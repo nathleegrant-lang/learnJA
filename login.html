@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In — LearnJA</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a6b2e;
+    --green-mid: #2d8a42;
+    --green-light: #eaf3de;
+    --gold: #f0c020;
+    --gold-dark: #c49a10;
+    --gold-light: #fdf6dc;
+    --black: #1a1a1a;
+    --white: #ffffff;
+    --gray: #f5f5f2;
+    --text: #222;
+    --text-muted: #666;
+    --radius: 18px;
+    --radius-sm: 10px;
+    --error: #d32f2f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--gray);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* NAV */
+  nav {
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid #e8e8e4;
+    padding: 0 40px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Baloo 2', cursive;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--green);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--gold-dark); }
+
+  .nav-back {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--green); }
+
+  /* MAIN LAYOUT */
+  .page-wrap {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 64px);
+  }
+
+  /* LEFT PANEL */
+  .left-panel {
+    background: var(--green);
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .left-panel::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    background: rgba(240,192,32,0.12);
+    border-radius: 50%;
+  }
+
+  .left-panel::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 220px;
+    height: 220px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+
+  .left-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .left-content { position: relative; z-index: 2; }
+
+  .left-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.9);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .left-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 40px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .left-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .left-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.78);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    font-weight: 500;
+  }
+
+  .left-features {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .left-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .left-feature-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .left-feature-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.88);
+  }
+
+  .left-image {
+    margin-top: 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid rgba(255,255,255,0.2);
+  }
+
+  .left-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* RIGHT PANEL */
+  .right-panel {
+    background: var(--white);
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-header {
+    margin-bottom: 32px;
+  }
+
+  .form-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+
+  .form-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .form-sub a {
+    color: var(--green);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .form-sub a:hover { text-decoration: underline; }
+
+  /* USER TYPE TOGGLE */
+  .user-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 28px;
+    background: var(--gray);
+    padding: 5px;
+    border-radius: var(--radius-sm);
+  }
+
+  .toggle-btn {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--text-muted);
+  }
+
+  .toggle-btn.active {
+    background: var(--white);
+    color: var(--green);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .toggle-icon { font-size: 18px; }
+
+  /* FORM */
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .form-input {
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border: 1.5px solid #e0e0dc;
+    border-radius: var(--radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+
+  .form-input:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(26,107,46,0.1);
+  }
+
+  .form-input::placeholder { color: #bbb; }
+
+  .password-wrap {
+    position: relative;
+  }
+
+  .password-wrap .form-input {
+    padding-right: 48px;
+  }
+
+  .toggle-pw {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text-muted);
+    padding: 0;
+  }
+
+  .form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+  }
+
+  .remember-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .remember-wrap input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--green);
+    cursor: pointer;
+  }
+
+  .remember-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+
+  .forgot-link {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--green);
+    text-decoration: none;
+  }
+
+  .forgot-link:hover { text-decoration: underline; }
+
+  /* BUTTONS */
+  .btn-login {
+    width: 100%;
+    height: 50px;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 16px;
+  }
+
+  .btn-login:hover { background: #0f5220; transform: translateY(-1px); }
+  .btn-login:active { transform: translateY(0); }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: #e8e8e4;
+  }
+
+  .divider-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .btn-google {
+    width: 100%;
+    height: 50px;
+    background: var(--white);
+    color: var(--text);
+    border: 1.5px solid #e0e0dc;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .btn-google:hover { border-color: #bbb; background: var(--gray); }
+
+  .google-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  /* STUDENT EXTRA */
+  .student-note {
+    background: var(--gold-light);
+    border: 1.5px solid #e8d88a;
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  .student-note.show { display: block; }
+
+  .student-note-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--gold-dark);
+    margin-bottom: 4px;
+  }
+
+  .student-note-text {
+    font-size: 12px;
+    color: #7a6010;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* SIGNUP LINK */
+  .signup-row {
+    text-align: center;
+    padding-top: 16px;
+    border-top: 1px solid #f0f0ec;
+  }
+
+  .signup-text {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .signup-text a {
+    color: var(--green);
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .signup-text a:hover { text-decoration: underline; }
+
+  /* SAFE BADGE */
+  .safe-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #aaa;
+  }
+
+  /* ERROR STATE */
+  .error-msg {
+    background: #fdecea;
+    border: 1px solid #f5c6c6;
+    color: var(--error);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    display: none;
+  }
+
+  /* ANIMATIONS */
+  .right-panel { animation: slideIn 0.5s ease both; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .left-content > * {
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .left-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .left-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .left-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .left-content > *:nth-child(4) { animation-delay: 0.4s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .page-wrap { grid-template-columns: 1fr; }
+    .left-panel { display: none; }
+    .right-panel { padding: 40px 24px; }
+    nav { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">Learn<span>JA</span></a>
+  <a href="index.html" class="nav-back">← Back to home</a>
+</nav>
+
+<!-- MAIN -->
+<div class="page-wrap">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <div class="left-dots"></div>
+    <div class="left-content">
+      <div class="left-tag">🇯🇲 Jamaica's online primary school</div>
+      <h2 class="left-title">Welcome back to <em>LearnJA</em></h2>
+      <p class="left-sub">Your child's personalised learning journey is waiting. Log in to continue where you left off.</p>
+      <div class="left-features">
+        <div class="left-feature">
+          <div class="left-feature-dot">🎓</div>
+          <div class="left-feature-text">All subjects · Grades 1–6 · MOEYI aligned</div>
+        </div>
+        <div class="left-feature">
+          <div class="left-feature-dot">🤖</div>
+          <div class="left-feature-text">AI feedback & auto-assigned tasks</div>
+        </div>
+        <div class="left-feature">
+          <div class="left-feature-dot">🔊</div>
+          <div class="left-feature-text">Natural text-to-speech on every lesson</div>
+        </div>
+        <div class="left-feature">
+          <div class="left-feature-dot">🌐</div>
+          <div class="left-feature-text">3D Explorer — solar system, human body & more</div>
+        </div>
+        <div class="left-feature">
+          <div class="left-feature-dot">📊</div>
+          <div class="left-feature-text">Weekly progress reports to your phone</div>
+        </div>
+      </div>
+      <div class="left-image">
+        <img src="GirlHeadphone.png" alt="Jamaican child learning on LearnJA">
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+    <div style="max-width:400px;width:100%;margin:0 auto;">
+
+      <div class="form-header">
+        <h1 class="form-title">Log in to LearnJA</h1>
+        <p class="form-sub">Don't have an account? <a href="pricing.html">Start free today</a></p>
+      </div>
+
+      <!-- USER TYPE TOGGLE -->
+      <div class="user-toggle">
+        <button class="toggle-btn active" id="btn-parent" onclick="setUser('parent')">
+          <span class="toggle-icon">👩‍👧</span> I'm a Parent
+        </button>
+        <button class="toggle-btn" id="btn-student" onclick="setUser('student')">
+          <span class="toggle-icon">🎒</span> I'm a Student
+        </button>
+      </div>
+
+      <!-- STUDENT NOTE -->
+      <div class="student-note" id="student-note">
+        <div class="student-note-title">👋 Hey there, student!</div>
+        <div class="student-note-text">Your login details were set up by your parent. Ask them for your email and password if you don't know it yet.</div>
+      </div>
+
+      <!-- ERROR -->
+      <div class="error-msg" id="error-msg">Incorrect email or password. Please try again.</div>
+
+      <!-- GOOGLE LOGIN -->
+      <button class="btn-google" onclick="handleGoogle()">
+        <svg class="google-icon" viewBox="0 0 24 24">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-text">or</div>
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div class="form-group">
+        <label class="form-label" for="email">Email address</label>
+        <input class="form-input" type="email" id="email" placeholder="you@example.com" autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <div class="password-wrap">
+          <input class="form-input" type="password" id="password" placeholder="Enter your password" autocomplete="current-password">
+          <button class="toggle-pw" onclick="togglePassword()" title="Show/hide password">👁</button>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="remember-wrap">
+          <input type="checkbox" id="remember">
+          <label class="remember-label" for="remember">Remember me</label>
+        </div>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button class="btn-login" onclick="handleLogin()">Log in to LearnJA</button>
+
+      <div class="signup-row">
+        <p class="signup-text">New to LearnJA? <a href="pricing.html">Create a free account →</a></p>
+      </div>
+
+      <div class="safe-badge">
+        🔒 Secure login · Safe for children · No ads
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function setUser(type) {
+    const btnParent = document.getElementById('btn-parent');
+    const btnStudent = document.getElementById('btn-student');
+    const studentNote = document.getElementById('student-note');
+    const formTitle = document.querySelector('.form-title');
+
+    if (type === 'parent') {
+      btnParent.classList.add('active');
+      btnStudent.classList.remove('active');
+      studentNote.classList.remove('show');
+      formTitle.textContent = 'Log in to LearnJA';
+      document.getElementById('email').placeholder = 'your@email.com';
+    } else {
+      btnStudent.classList.add('active');
+      btnParent.classList.remove('active');
+      studentNote.classList.add('show');
+      formTitle.textContent = 'Welcome back, student!';
+      document.getElementById('email').placeholder = 'Your school email';
+    }
+  }
+
+  function togglePassword() {
+    const pw = document.getElementById('password');
+    pw.type = pw.type === 'password' ? 'text' : 'password';
+  }
+
+  function handleLogin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const errorMsg = document.getElementById('error-msg');
+
+    if (!email || !password) {
+      errorMsg.textContent = 'Please enter your email and password.';
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    errorMsg.style.display = 'none';
+    const btn = document.querySelector('.btn-login');
+    btn.textContent = 'Logging in...';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      window.location.href = 'dashboard.html';
+    }, 1200);
+  }
+
+  function handleGoogle() {
+    const btn = document.querySelector('.btn-google');
+    btn.innerHTML = '⏳ Connecting to Google...';
+    btn.disabled = true;
+    setTimeout(() => {
+      window.location.href = 'dashboard.html';
+    }, 1200);
+  }
+
+  document.getElementById('email').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('password').focus();
+  });
+
+  document.getElementById('password').addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleLogin();
+  });
+</script>
+
+</body>
+</html>
