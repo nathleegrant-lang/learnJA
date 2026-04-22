@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Dashboard — LearnJA</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a6b2e;
+    --green-mid: #2d8a42;
+    --green-light: #eaf3de;
+    --gold: #f0c020;
+    --gold-dark: #c49a10;
+    --gold-light: #fdf6dc;
+    --black: #1a1a1a;
+    --white: #ffffff;
+    --gray: #f5f5f2;
+    --text: #222;
+    --text-muted: #666;
+    --radius: 18px;
+    --radius-sm: 10px;
+    --sidebar: 240px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--gray);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: var(--sidebar);
+    background: var(--green);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 100;
+    overflow: hidden;
+  }
+
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    bottom: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+
+  .sidebar-logo {
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .logo {
+    font-family: 'Baloo 2', cursive;
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--gold); }
+
+  .sidebar-student {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .student-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.3);
+    flex-shrink: 0;
+  }
+
+  .student-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .student-info-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .student-info-grade {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+  }
+
+  .sidebar-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(240,192,32,0.2);
+    border: 1px solid rgba(240,192,32,0.3);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+
+  .sidebar-nav {
+    padding: 16px 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .nav-label {
+    font-size: 10px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 8px 8px 4px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .nav-item:hover { background: rgba(255,255,255,0.1); color: #fff; }
+  .nav-item.active { background: rgba(255,255,255,0.15); color: #fff; }
+
+  .nav-icon { font-size: 16px; width: 20px; text-align: center; }
+
+  .nav-badge {
+    margin-left: auto;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 10px;
+  }
+
+  .sidebar-bottom {
+    padding: 16px 12px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .btn-logout:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+  /* MAIN CONTENT */
+  .main {
+    margin-left: var(--sidebar);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--white);
+    border-bottom: 1.5px solid #e8e8e4;
+    padding: 0 32px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .topbar-greeting {
+    font-family: 'Baloo 2', cursive;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .topbar-greeting span { color: var(--green); }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .tts-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-light);
+    border: none;
+    border-radius: 50px;
+    padding: 7px 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--green);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .tts-toggle:hover { background: #d0eac0; }
+
+  .tts-wave {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+  }
+
+  .tts-wave span {
+    display: block;
+    width: 3px;
+    background: var(--green);
+    border-radius: 2px;
+    animation: wave 0.8s ease-in-out infinite;
+  }
+
+  .tts-wave span:nth-child(1) { height: 6px; animation-delay: 0s; }
+  .tts-wave span:nth-child(2) { height: 10px; animation-delay: 0.15s; }
+  .tts-wave span:nth-child(3) { height: 7px; animation-delay: 0.3s; }
+
+  @keyframes wave {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.6); }
+  }
+
+  .notif-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--gray);
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .notif-dot {
+    position: absolute;
+    top: 6px; right: 6px;
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    border: 1.5px solid var(--white);
+  }
+
+  /* PAGE CONTENT */
+  .content {
+    padding: 28px 32px;
+    flex: 1;
+  }
+
+  /* TODAY'S LESSON BANNER */
+  .today-banner {
+    background: var(--green);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .today-banner::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 50%;
+  }
+
+  .today-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; right: 120px;
+    width: 100px; height: 100px;
+    background: rgba(240,192,32,0.1);
+    border-radius: 50%;
+  }
+
+  .today-left { position: relative; z-index: 2; }
+
+  .today-tag {
+    display: inline-block;
+    background: rgba(240,192,32,0.25);
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  .today-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .today-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    font-weight: 600;
+  }
+
+  .today-right { position: relative; z-index: 2; }
+
+  .btn-start {
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 28px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-start:hover { background: #d4a800; transform: translateY(-2px); }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border: 1.5px solid #e8e8e4;
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: transform 0.2s;
+  }
+
+  .stat-card:hover { transform: translateY(-2px); }
+
+  .stat-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .stat-icon.green { background: var(--green-light); }
+  .stat-icon.gold { background: var(--gold-light); }
+  .stat-icon.blue { background: #e6f1fb; }
+  .stat-icon.purple { background: #eeedfe; }
+
+  .stat-val {
+    font-family: 'Baloo 2', cursive;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .stat-lbl {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  /* GRID LAYOUT */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1.5px solid #e8e8e4;
+    border-radius: var(--radius);
+    padding: 22px 22px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-title-link {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green);
+    text-decoration: none;
+  }
+
+  /* PROGRESS BARS */
+  .subj-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .subj-item:last-child { margin-bottom: 0; }
+
+  .subj-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .subj-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    min-width: 100px;
+  }
+
+  .prog-bar-bg {
+    flex: 1;
+    height: 8px;
+    background: #f0f0ec;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .prog-bar {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 1s ease;
+  }
+
+  .prog-pct {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--text);
+    min-width: 36px;
+    text-align: right;
+  }
+
+  /* BADGES */
+  .badges-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .badge-item {
+    background: var(--gray);
+    border-radius: 12px;
+    padding: 12px 10px;
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .badge-item:hover { transform: translateY(-2px); }
+  .badge-item.locked { opacity: 0.4; filter: grayscale(1); }
+
+  .badge-icon { font-size: 28px; margin-bottom: 4px; }
+
+  .badge-name {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .badge-earned {
+    font-size: 9px;
+    color: var(--green);
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  /* TASKS */
+  .task-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0ec;
+  }
+
+  .task-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .task-checkbox {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid #e0e0dc;
+    flex-shrink: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    background: var(--white);
+  }
+
+  .task-checkbox.done {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+    font-size: 10px;
+  }
+
+  .task-info { flex: 1; }
+
+  .task-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .task-name.done { text-decoration: line-through; color: var(--text-muted); }
+
+  .task-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .task-pill {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .pill-green { background: var(--green-light); color: var(--green); }
+  .pill-gold { background: var(--gold-light); color: var(--gold-dark); }
+  .pill-blue { background: #e6f1fb; color: #185fa5; }
+  .pill-pink { background: #fce4ec; color: #c2185b; }
+  .pill-purple { background: #eeedfe; color: #534ab7; }
+
+  /* SUBJECTS CARDS */
+  .subj-card {
+    border-radius: var(--radius);
+    padding: 18px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .subj-card:hover { transform: translateY(-3px); }
+
+  .subj-card.math { background: #e8f5e9; border: 1.5px solid #c8e6c9; }
+  .subj-card.lang { background: #e3f2fd; border: 1.5px solid #bbdefb; }
+  .subj-card.sci  { background: #fce4ec; border: 1.5px solid #f8bbd9; }
+  .subj-card.ss   { background: #fff8e1; border: 1.5px solid #ffe082; }
+  .subj-card.re   { background: #ede7f6; border: 1.5px solid #d1c4e9; }
+  .subj-card.art  { background: #fbe9e7; border: 1.5px solid #ffccbc; }
+
+  .subj-card-img {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .subj-card-name {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .subj-card-progress {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .subj-mini-bar {
+    height: 5px;
+    background: rgba(0,0,0,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .subj-mini-fill {
+    height: 100%;
+    border-radius: 10px;
+    background: var(--green);
+  }
+
+  /* STREAK */
+  .streak-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .streak-day {
+    flex: 1;
+    text-align: center;
+  }
+
+  .streak-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin: 0 auto 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+
+  .streak-dot.done { background: var(--green); color: white; }
+  .streak-dot.today { background: var(--gold); color: var(--black); }
+  .streak-dot.upcoming { background: #f0f0ec; color: #ccc; }
+
+  .streak-label {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  /* ANIMATIONS */
+  .card, .stat-card, .today-banner {
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stat-card:nth-child(1) { animation-delay: 0.05s; }
+  .stat-card:nth-child(2) { animation-delay: 0.1s; }
+  .stat-card:nth-child(3) { animation-delay: 0.15s; }
+  .stat-card:nth-child(4) { animation-delay: 0.2s; }
+
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .content { padding: 20px 16px; }
+    .topbar { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <a href="index.html" class="logo">Learn<span>JA</span></a>
+  </div>
+
+  <div class="sidebar-student">
+    <div class="student-avatar">
+      <img src="Boyon_tablet.png" alt="Student">
+    </div>
+    <div>
+      <div class="student-info-name">Jaheim Brown</div>
+      <div class="student-info-grade">Grade 4 · Scholar</div>
+      <div class="sidebar-stars">⭐ 1,240 stars</div>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-label">Main</div>
+    <a class="nav-item active" href="dashboard.html">
+      <span class="nav-icon">🏠</span> Dashboard
+    </a>
+    <a class="nav-item" href="quiz.html">
+      <span class="nav-icon">🧩</span> My Lessons
+      <span class="nav-badge">3 new</span>
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">🌐</span> 3D Explorer
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">🏅</span> My Badges
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">📊</span> My Progress
+    </a>
+
+    <div class="nav-label" style="margin-top:12px;">Subjects</div>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">🔢</span> Mathematics
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">📖</span> Language Arts
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">🔬</span> Science
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">🌍</span> Social Studies
+    </a>
+  </nav>
+
+  <div class="sidebar-bottom">
+    <a class="btn-logout" href="login.html">
+      <span>🚪</span> Log out
+    </a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-greeting">Good morning, <span>Jaheim</span>! 🇯🇲</div>
+    <div class="topbar-right">
+      <button class="tts-toggle" onclick="toggleTTS()">
+        🔊 Read page aloud
+        <div class="tts-wave" id="tts-wave" style="display:none;">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+      <button class="notif-btn">🔔<div class="notif-dot"></div></button>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- TODAY'S LESSON BANNER -->
+    <div class="today-banner">
+      <div class="today-left">
+        <div class="today-tag">📅 Today's lesson</div>
+        <div class="today-title">Fractions — Adding & Subtracting</div>
+        <div class="today-sub">Mathematics · Grade 4 · Estimated time: 20 minutes</div>
+      </div>
+      <div class="today-right">
+        <a href="quiz.html" class="btn-start">Start lesson →</a>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon green">⭐</div>
+        <div>
+          <div class="stat-val">1,240</div>
+          <div class="stat-lbl">Jamaican Stars</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon gold">🏅</div>
+        <div>
+          <div class="stat-val">8</div>
+          <div class="stat-lbl">Badges earned</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon blue">📚</div>
+        <div>
+          <div class="stat-val">34</div>
+          <div class="stat-lbl">Lessons done</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon purple">🔥</div>
+        <div>
+          <div class="stat-val">6</div>
+          <div class="stat-lbl">Day streak</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRESS + TASKS -->
+    <div class="grid-2">
+
+      <!-- SUBJECT PROGRESS CHART -->
+      <div class="card">
+        <div class="card-title">
+          Grade 4 curriculum progress
+          <a href="#" class="card-title-link">See all →</a>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);font-weight:600;margin-bottom:14px;margin-top:-10px;">How much of this year's syllabus you have completed per subject</p>
+        <div style="position:relative;height:260px;width:100%;">
+          <canvas id="progressChart"></canvas>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">
+          <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#555;"><span style="width:10px;height:10px;border-radius:3px;background:#1a6b2e;display:inline-block;"></span>Maths 82%</span>
+          <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#555;"><span style="width:10px;height:10px;border-radius:3px;background:#378add;display:inline-block;"></span>Language 75%</span>
+          <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#555;"><span style="width:10px;height:10px;border-radius:3px;background:#d4537e;display:inline-block;"></span>Science 91%</span>
+          <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#555;"><span style="width:10px;height:10px;border-radius:3px;background:#f0c020;display:inline-block;"></span>Social 60%</span>
+          <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#555;"><span style="width:10px;height:10px;border-radius:3px;background:#7f77dd;display:inline-block;"></span>RE 55%</span>
+          <span style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#555;"><span style="width:10px;height:10px;border-radius:3px;background:#d85a30;display:inline-block;"></span>Arts 70%</span>
+        </div>
+      </div>
+
+      <!-- TASKS -->
+      <div class="card">
+        <div class="card-title">
+          Upcoming tasks
+          <a href="#" class="card-title-link">See all →</a>
+        </div>
+
+        <div class="task-item">
+          <div class="task-checkbox done" onclick="toggleTask(this)">✓</div>
+          <div class="task-info">
+            <div class="task-name done">Multiplication tables quiz</div>
+            <div class="task-meta">Mathematics · Completed today</div>
+          </div>
+          <span class="task-pill pill-green">Done</span>
+        </div>
+
+        <div class="task-item">
+          <div class="task-checkbox" onclick="toggleTask(this)"></div>
+          <div class="task-info">
+            <div class="task-name">Fractions — Adding & Subtracting</div>
+            <div class="task-meta">Mathematics · Due today</div>
+          </div>
+          <span class="task-pill pill-gold">Today</span>
+        </div>
+
+        <div class="task-item">
+          <div class="task-checkbox" onclick="toggleTask(this)"></div>
+          <div class="task-info">
+            <div class="task-name">Reading comprehension — Anansi</div>
+            <div class="task-meta">Language Arts · Due tomorrow</div>
+          </div>
+          <span class="task-pill pill-blue">Tomorrow</span>
+        </div>
+
+        <div class="task-item">
+          <div class="task-checkbox" onclick="toggleTask(this)"></div>
+          <div class="task-info">
+            <div class="task-name">Jamaica's national heroes quiz</div>
+            <div class="task-meta">Social Studies · Due in 2 days</div>
+          </div>
+          <span class="task-pill pill-purple">2 days</span>
+        </div>
+
+        <div class="task-item">
+          <div class="task-checkbox" onclick="toggleTask(this)"></div>
+          <div class="task-info">
+            <div class="task-name">Plant life cycle — revision</div>
+            <div class="task-meta">Science · Due in 3 days</div>
+          </div>
+          <span class="task-pill pill-pink">3 days</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BADGES -->
+    <div class="card" style="margin-bottom:24px;background:#fff;border-color:#e8e8e4;">
+      <div class="card-title">
+        My badges 🏅
+        <a href="#" class="card-title-link">See all →</a>
+      </div>
+      <div class="badges-grid">
+        <div class="badge-item" style="background:#eaf3de;">
+          <div class="badge-icon">🧮</div>
+          <div class="badge-name">Mathlete</div>
+          <div class="badge-earned" style="color:#1a6b2e;">Earned · Week 2</div>
+        </div>
+        <div class="badge-item" style="background:#e3f2fd;">
+          <div class="badge-icon">🔬</div>
+          <div class="badge-name">Science Explorer</div>
+          <div class="badge-earned" style="color:#185fa5;">Earned · Week 3</div>
+        </div>
+        <div class="badge-item" style="background:#fce4ec;">
+          <div class="badge-icon">📖</div>
+          <div class="badge-name">Bookworm</div>
+          <div class="badge-earned" style="color:#c2185b;">Earned · Week 1</div>
+        </div>
+        <div class="badge-item" style="background:#fff8e1;">
+          <div class="badge-icon">🔥</div>
+          <div class="badge-name">7-Day Streak</div>
+          <div class="badge-earned" style="color:#854f0b;">Earned · This week</div>
+        </div>
+        <div class="badge-item" style="background:#ede7f6;">
+          <div class="badge-icon">🌟</div>
+          <div class="badge-name">Star Student</div>
+          <div class="badge-earned" style="color:#534ab7;">Earned · Month 1</div>
+        </div>
+        <div class="badge-item" style="background:#fbe9e7;">
+          <div class="badge-icon">🏆</div>
+          <div class="badge-name">Quiz Champion</div>
+          <div class="badge-earned" style="color:#993c1d;">Earned · Week 4</div>
+        </div>
+        <div class="badge-item" style="background:#e1f5ee;">
+          <div class="badge-icon">🌍</div>
+          <div class="badge-name">Jamaica Expert</div>
+          <div class="badge-earned" style="color:#085041;">Earned · Week 5</div>
+        </div>
+        <div class="badge-item" style="background:#fdf6dc;">
+          <div class="badge-icon">🎨</div>
+          <div class="badge-name">Creative Star</div>
+          <div class="badge-earned" style="color:#633806;">Earned · Week 6</div>
+        </div>
+        <div class="badge-item locked">
+          <div class="badge-icon">🎓</div>
+          <div class="badge-name">Grade Master</div>
+          <div class="badge-earned">Locked</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEKLY STREAK -->
+    <div style="background:linear-gradient(135deg,#1a6b2e 0%,#2d8a42 60%,#f0c020 100%);border-radius:var(--radius);padding:22px 24px;margin-bottom:24px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <div>
+          <div style="font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;color:#fff;">This week's streak 🔥</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.75);font-weight:600;margin-top:2px;">Keep it up — you're on a 6 day streak!</div>
+        </div>
+        <div style="background:rgba(240,192,32,0.25);border:1px solid rgba(240,192,32,0.4);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:800;color:var(--gold);">🔥 6 days</div>
+      </div>
+      <div class="streak-row">
+        <div class="streak-day">
+          <div style="width:38px;height:38px;border-radius:50%;background:#eaf3de;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 6px;border:2px solid #1a6b2e;">✅</div>
+          <div style="font-size:10px;font-weight:800;color:rgba(255,255,255,0.9);">Mon</div>
+        </div>
+        <div class="streak-day">
+          <div style="width:38px;height:38px;border-radius:50%;background:#e3f2fd;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 6px;border:2px solid #185fa5;">✅</div>
+          <div style="font-size:10px;font-weight:800;color:rgba(255,255,255,0.9);">Tue</div>
+        </div>
+        <div class="streak-day">
+          <div style="width:38px;height:38px;border-radius:50%;background:#fce4ec;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 6px;border:2px solid #c2185b;">✅</div>
+          <div style="font-size:10px;font-weight:800;color:rgba(255,255,255,0.9);">Wed</div>
+        </div>
+        <div class="streak-day">
+          <div style="width:38px;height:38px;border-radius:50%;background:#ede7f6;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 6px;border:2px solid #534ab7;">✅</div>
+          <div style="font-size:10px;font-weight:800;color:rgba(255,255,255,0.9);">Thu</div>
+        </div>
+        <div class="streak-day">
+          <div style="width:38px;height:38px;border-radius:50%;background:#fbe9e7;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 6px;border:2px solid #993c1d;">✅</div>
+          <div style="font-size:10px;font-weight:800;color:rgba(255,255,255,0.9);">Fri</div>
+        </div>
+        <div class="streak-day">
+          <div style="width:38px;height:38px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:18px;margin:0 auto 6px;border:2px solid #fff;box-shadow:0 0 0 3px rgba(240,192,32,0.4);">⭐</div>
+          <div style="font-size:10px;font-weight:800;color:#fff;">Today</div>
+        </div>
+        <div class="streak-day">
+          <div style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 6px;border:2px dashed rgba(255,255,255,0.3);">○</div>
+          <div style="font-size:10px;font-weight:800;color:rgba(255,255,255,0.5);">Sun</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBJECTS -->
+    <div class="card-title" style="margin-bottom:14px;font-size:15px;font-weight:800;">
+      Jump into a subject
+    </div>
+    <div class="grid-3">
+      <div class="subj-card math" onclick="window.location='quiz.html'">
+        <img class="subj-card-img" src="Mathematics.png" alt="Mathematics">
+        <div class="subj-card-name">Mathematics</div>
+        <div class="subj-card-progress">82% complete</div>
+        <div class="subj-mini-bar"><div class="subj-mini-fill" style="width:82%;background:#2d8a42;"></div></div>
+      </div>
+      <div class="subj-card lang" onclick="window.location='quiz.html'">
+        <img class="subj-card-img" src="Language_Arts.png" alt="Language Arts">
+        <div class="subj-card-name">Language Arts</div>
+        <div class="subj-card-progress">75% complete</div>
+        <div class="subj-mini-bar"><div class="subj-mini-fill" style="width:75%;background:#378add;"></div></div>
+      </div>
+      <div class="subj-card sci" onclick="window.location='quiz.html'">
+        <img class="subj-card-img" src="Science.png" alt="Science">
+        <div class="subj-card-name">Science</div>
+        <div class="subj-card-progress">91% complete</div>
+        <div class="subj-mini-bar"><div class="subj-mini-fill" style="width:91%;background:#d4537e;"></div></div>
+      </div>
+      <div class="subj-card ss" onclick="window.location='quiz.html'">
+        <img class="subj-card-img" src="Jamaaica_Town.png" alt="Social Studies">
+        <div class="subj-card-name">Social Studies</div>
+        <div class="subj-card-progress">60% complete</div>
+        <div class="subj-mini-bar"><div class="subj-mini-fill" style="width:60%;background:#f0c020;"></div></div>
+      </div>
+      <div class="subj-card re" onclick="window.location='quiz.html'">
+        <img class="subj-card-img" src="ReligiousEd.png" alt="Religious Education">
+        <div class="subj-card-name">Religious Education</div>
+        <div class="subj-card-progress">55% complete</div>
+        <div class="subj-mini-bar"><div class="subj-mini-fill" style="width:55%;background:#7f77dd;"></div></div>
+      </div>
+      <div class="subj-card art" onclick="window.location='quiz.html'">
+        <img class="subj-card-img" src="Art.png" alt="Arts & Music">
+        <div class="subj-card-name">Arts & Music</div>
+        <div class="subj-card-progress">70% complete</div>
+        <div class="subj-mini-bar"><div class="subj-mini-fill" style="width:70%;background:#d85a30;"></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+  // PROGRESS CHART
+  const ctx = document.getElementById('progressChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Mathematics', 'Language Arts', 'Science', 'Social Studies', 'Religious Ed', 'Arts & Music'],
+      datasets: [{
+        label: 'Progress (%)',
+        data: [82, 75, 91, 60, 55, 70],
+        backgroundColor: [
+          '#1a6b2e',
+          '#378add',
+          '#d4537e',
+          '#f0c020',
+          '#7f77dd',
+          '#d85a30'
+        ],
+        borderRadius: 10,
+        borderSkipped: false,
+        barPercentage: 0.6,
+        categoryPercentage: 0.7,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.raw}% complete`
+          },
+          backgroundColor: '#1a1a1a',
+          titleFont: { family: 'Nunito', weight: '700' },
+          bodyFont: { family: 'Nunito', weight: '600' },
+          padding: 10,
+          cornerRadius: 8,
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 100,
+          grid: { color: '#f0f0ec' },
+          ticks: {
+            callback: val => val + '%',
+            font: { family: 'Nunito', size: 11, weight: '700' },
+            color: '#999',
+          },
+          border: { display: false }
+        },
+        x: {
+          grid: { display: false },
+          ticks: {
+            font: { family: 'Nunito', size: 10, weight: '700' },
+            color: '#666',
+            maxRotation: 0,
+            callback: function(val, idx) {
+              const labels = ['Maths', 'Language', 'Science', 'Social', 'Rel. Ed', 'Arts'];
+              return labels[idx];
+            }
+          },
+          border: { display: false }
+        }
+      },
+      animation: {
+        duration: 1200,
+        easing: 'easeOutQuart'
+      }
+    }
+  });
+  function toggleTask(el) {
+    el.classList.toggle('done');
+    const nameEl = el.parentElement.querySelector('.task-name');
+    const pillEl = el.parentElement.querySelector('.task-pill');
+    if (el.classList.contains('done')) {
+      el.textContent = '✓';
+      nameEl.classList.add('done');
+      if (pillEl) { pillEl.textContent = 'Done'; pillEl.className = 'task-pill pill-green'; }
+    } else {
+      el.textContent = '';
+      nameEl.classList.remove('done');
+    }
+  }
+
+  let ttsActive = false;
+  function toggleTTS() {
+    ttsActive = !ttsActive;
+    const wave = document.getElementById('tts-wave');
+    const btn = document.querySelector('.tts-toggle');
+    if (ttsActive) {
+      wave.style.display = 'flex';
+      btn.style.background = '#1a6b2e';
+      btn.style.color = 'white';
+      const utterance = new SpeechSynthesisUtterance(
+        'Good morning Jaheim! Today you have Fractions — Adding and Subtracting in Mathematics. You have completed 82 percent of Mathematics, 75 percent of Language Arts, and 91 percent of Science. Keep it up!'
+      );
+      utterance.rate = 0.9;
+      utterance.onend = () => {
+        ttsActive = false;
+        wave.style.display = 'none';
+        btn.style.background = '';
+        btn.style.color = '';
+      };
+      window.speechSynthesis.speak(utterance);
+    } else {
+      window.speechSynthesis.cancel();
+      wave.style.display = 'none';
+      btn.style.background = '';
+      btn.style.color = '';
+    }
+  }
+
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  document.querySelector('.topbar-greeting').innerHTML = `${greeting}, <span>Jaheim</span>! 🇯🇲`;
+</script>
+</body>
+</html>
