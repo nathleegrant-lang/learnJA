@@ -1412,11 +1412,20 @@
       <div class="section-tag" style="background:#eaf3de;color:#1a6b2e;">Pricing</div>
       <h2 class="section-title" style="text-align:center;">Simple, honest pricing</h2>
       <p class="section-sub" style="margin:0 auto;text-align:center;">Start free. Upgrade when ready. No hidden fees, no contracts.</p>
+
+      <!-- BILLING TOGGLE -->
+      <div style="display:inline-flex;align-items:center;gap:0;background:#e8e8e4;border-radius:50px;padding:4px;margin-top:24px;">
+        <button id="btn-weekly" onclick="setBilling('weekly')" style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;padding:8px 24px;border-radius:50px;border:none;cursor:pointer;background:#1a6b2e;color:white;transition:all 0.2s;">Weekly</button>
+        <button id="btn-monthly" onclick="setBilling('monthly')" style="font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;padding:8px 24px;border-radius:50px;border:none;cursor:pointer;background:transparent;color:#666;transition:all 0.2s;">Monthly <span style="background:#f0c020;color:#1a1a1a;font-size:10px;padding:2px 8px;border-radius:10px;margin-left:4px;font-weight:800;">Save J$500</span></button>
+      </div>
     </div>
-    <div class="pricing-grid">
+
+    <div class="pricing-grid" style="margin-top:40px;">
+
+      <!-- FREE -->
       <div class="price-card">
         <div class="price-name">Free Starter</div>
-        <div class="price-amount">$0 <span>/ month</span></div>
+        <div class="price-amount">$0 <span>/ always free</span></div>
         <div class="price-desc">Explore the platform before committing.</div>
         <ul class="price-items">
           <li class="price-item"><span class="pi-check">✓</span><span>3 lessons per subject/month</span></li>
@@ -1429,11 +1438,13 @@
         <button class="price-btn">Get started free</button>
       </div>
 
+      <!-- SCHOLAR -->
       <div class="price-card featured">
         <div class="price-popular">Most popular</div>
-        <div class="price-name">Scholar</div>
-        <div class="price-amount">J$1,500 <span>/ month</span></div>
-        <div class="price-desc">Full access for one child. Everything needed to learn independently.</div>
+        <div class="price-name">Scholar — 1 child</div>
+        <div class="price-amount" id="scholar-price">J$1,000 <span>/ week</span></div>
+        <div class="price-desc" id="scholar-desc">Full access for one child. Pay week by week — cancel anytime.</div>
+        <div id="scholar-savings" style="display:none;background:#eaf3de;color:#1a6b2e;font-size:12px;font-weight:800;padding:6px 12px;border-radius:8px;margin-bottom:12px;text-align:center;">Monthly saves you J$500 vs weekly billing</div>
         <ul class="price-items">
           <li class="price-item"><span class="pi-check">✓</span><span>All subjects & lessons</span></li>
           <li class="price-item"><span class="pi-check">✓</span><span>Unlimited quizzes & practice</span></li>
@@ -1446,10 +1457,12 @@
         <button class="price-btn main">Subscribe now</button>
       </div>
 
+      <!-- FAMILY -->
       <div class="price-card">
-        <div class="price-name">Family</div>
-        <div class="price-amount">J$3,500 <span>/ month</span></div>
-        <div class="price-desc">Up to 4 children. Best value for families.</div>
+        <div class="price-name">Family — up to 4</div>
+        <div class="price-amount" id="family-price">J$5,500 <span>/ month only</span></div>
+        <div class="price-desc" id="family-desc">Best value for families. Up to 4 children under one plan.</div>
+        <div id="family-weekly-note" style="display:none;background:#fdf6dc;color:#854f0b;font-size:12px;font-weight:800;padding:6px 12px;border-radius:8px;margin-bottom:12px;text-align:center;">Family plan is monthly billing only</div>
         <ul class="price-items">
           <li class="price-item"><span class="pi-check">✓</span><span>Everything in Scholar</span></li>
           <li class="price-item"><span class="pi-check">✓</span><span>Up to 4 student profiles</span></li>
@@ -1460,7 +1473,14 @@
         </ul>
         <button class="price-btn">Get family plan</button>
       </div>
+
     </div>
+
+    <!-- COMPARISON NOTE -->
+    <div style="text-align:center;margin-top:20px;">
+      <p style="font-size:13px;color:#888;font-weight:600;">Weekly Scholar = J$4,000/month · Monthly Scholar = J$3,500/month · <strong style="color:#1a6b2e;">Save J$500 by going monthly</strong></p>
+    </div>
+
   </div>
 </section>
 
@@ -1513,6 +1533,39 @@
       }
     });
   });
+
+  function setBilling(type) {
+    const btnWeekly = document.getElementById('btn-weekly');
+    const btnMonthly = document.getElementById('btn-monthly');
+    const scholarPrice = document.getElementById('scholar-price');
+    const scholarDesc = document.getElementById('scholar-desc');
+    const scholarSavings = document.getElementById('scholar-savings');
+    const familyPrice = document.getElementById('family-price');
+    const familyDesc = document.getElementById('family-desc');
+    const familyWeeklyNote = document.getElementById('family-weekly-note');
+
+    if (type === 'weekly') {
+      btnWeekly.style.background = '#1a6b2e';
+      btnWeekly.style.color = 'white';
+      btnMonthly.style.background = 'transparent';
+      btnMonthly.style.color = '#666';
+      scholarPrice.innerHTML = 'J$1,000 <span style="font-size:14px;color:#666;font-family:Nunito,sans-serif;font-weight:600;">/ week</span>';
+      scholarDesc.textContent = 'Full access for one child. Pay week by week — cancel anytime.';
+      scholarSavings.style.display = 'none';
+      familyPrice.innerHTML = 'J$5,500 <span style="font-size:14px;color:#666;font-family:Nunito,sans-serif;font-weight:600;">/ month only</span>';
+      familyWeeklyNote.style.display = 'block';
+    } else {
+      btnMonthly.style.background = '#1a6b2e';
+      btnMonthly.style.color = 'white';
+      btnWeekly.style.background = 'transparent';
+      btnWeekly.style.color = '#666';
+      scholarPrice.innerHTML = 'J$3,500 <span style="font-size:14px;color:#666;font-family:Nunito,sans-serif;font-weight:600;">/ month</span>';
+      scholarDesc.textContent = 'Full access for one child. Save J$500 vs weekly billing.';
+      scholarSavings.style.display = 'block';
+      familyPrice.innerHTML = 'J$5,500 <span style="font-size:14px;color:#666;font-family:Nunito,sans-serif;font-weight:600;">/ month</span>';
+      familyWeeklyNote.style.display = 'none';
+    }
+  }
 </script>
 </body>
 </html>
