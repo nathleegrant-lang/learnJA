@@ -521,7 +521,7 @@
     font-family: 'Baloo 2', cursive;
     font-size: 42px;
     font-weight: 800;
-    color: var(--green-light);
+    color: #a8d5b5;
     line-height: 1;
     margin-bottom: 12px;
   }
@@ -922,6 +922,176 @@
     transform: translateY(0);
   }
 
+  /* PHOTO SECTIONS */
+  .photo-section {
+    padding: 80px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 48px;
+  }
+
+  .photo-grid.reverse { direction: rtl; }
+  .photo-grid.reverse > * { direction: ltr; }
+
+  .photo-wrap {
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo-wrap img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    display: block;
+    border-radius: 24px;
+  }
+
+  .photo-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(255,255,255,0.95);
+    border-radius: 14px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+
+  .photo-badge-icon { font-size: 22px; }
+
+  .photo-badge-text { font-size: 12px; font-weight: 800; color: var(--text); }
+  .photo-badge-sub { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+
+  .photo-content { padding: 10px 0; }
+
+  .photo-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+
+  .photo-title em { font-style: normal; color: var(--green); }
+
+  .photo-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .photo-points { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .photo-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .photo-point-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: var(--green);
+    font-weight: 800;
+  }
+
+  /* MOSAIC PHOTO SECTION */
+  .mosaic-section {
+    background: var(--green);
+    padding: 80px 40px;
+    overflow: hidden;
+  }
+
+  .mosaic-inner { max-width: 1100px; margin: 0 auto; }
+
+  .mosaic-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr;
+    grid-template-rows: 200px 200px;
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .mosaic-img {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .mosaic-img.tall { grid-row: span 2; }
+
+  .mosaic-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .mosaic-img:hover img { transform: scale(1.04); }
+
+  .mosaic-img .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,107,46,0.7) 0%, transparent 60%);
+    border-radius: 16px;
+  }
+
+  .mosaic-img .overlay-text {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+    color: white;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  /* HOW CARDS WITH PHOTOS */
+  .how-card-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  /* SUBJECT CARD PHOTOS */
+  .subj-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
   @media (max-width: 768px) {
     nav { padding: 0 20px; }
     .nav-links { display: none; }
@@ -1073,24 +1243,28 @@
   <p class="section-sub">No teachers, no scheduling, no stress. The AI engine handles everything automatically — 24 hours a day, 7 days a week.</p>
   <div class="how-grid">
     <div class="how-card fade-in">
+      <img class="how-card-img" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=140&fit=crop&auto=format" alt="Child selecting grade on tablet">
       <div class="how-num">01</div>
       <div class="how-icon">🎓</div>
       <div class="how-title">Pick your grade</div>
       <div class="how-desc">Your child selects their grade (1–6) and the AI instantly builds a personalised learning path just for them.</div>
     </div>
     <div class="how-card fade-in">
+      <img class="how-card-img" src="https://images.unsplash.com/photo-1588072432836-e10032774350?w=400&h=140&fit=crop&auto=format" alt="Child watching lesson on screen">
       <div class="how-num">02</div>
       <div class="how-icon">🎬</div>
       <div class="how-title">Watch & explore</div>
       <div class="how-desc">Animated Jamaican lessons, 3D models and voiced demonstrations guide every concept step by step.</div>
     </div>
     <div class="how-card fade-in">
+      <img class="how-card-img" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=140&fit=crop&auto=format" alt="Child doing quiz on tablet">
       <div class="how-num">03</div>
       <div class="how-icon">🧩</div>
       <div class="how-title">Practice & quiz</div>
       <div class="how-desc">Interactive quizzes test understanding. The AI grades instantly and gives warm, encouraging voiced feedback.</div>
     </div>
     <div class="how-card fade-in">
+      <img class="how-card-img" src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=400&h=140&fit=crop&auto=format" alt="Happy child celebrating achievement">
       <div class="how-num">04</div>
       <div class="how-icon">📈</div>
       <div class="how-title">Level up</div>
@@ -1098,6 +1272,60 @@
     </div>
   </div>
 </section>
+
+<!-- PHOTO SPLIT 1 -->
+<div class="photo-section fade-in">
+  <div class="photo-grid">
+    <div class="photo-wrap">
+      <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&h=340&fit=crop&auto=format" alt="Jamaican child learning on tablet at home">
+      <div class="photo-badge">
+        <div class="photo-badge-icon">🏅</div>
+        <div>
+          <div class="photo-badge-text">Jaheim just earned</div>
+          <div class="photo-badge-sub">"Mathlete" badge · Grade 4</div>
+        </div>
+      </div>
+    </div>
+    <div class="photo-content">
+      <div class="section-tag">Built for Caribbean children</div>
+      <h3 class="photo-title">Learning that <em>speaks their language</em></h3>
+      <p class="photo-desc">LearnJA is built around the Jamaican experience — familiar names, local settings, Caribbean context — so every child sees themselves in what they're learning.</p>
+      <ul class="photo-points">
+        <li class="photo-point"><span class="photo-point-dot">✓</span>Word problems set in Jamaican markets, parishes and landmarks</li>
+        <li class="photo-point"><span class="photo-point-dot">✓</span>AI feedback voiced in warm, encouraging Jamaican English</li>
+        <li class="photo-point"><span class="photo-point-dot">✓</span>Stories and examples featuring Jamaican national heroes</li>
+        <li class="photo-point"><span class="photo-point-dot">✓</span>Fully aligned to MOEYI primary school curriculum</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- PHOTO SPLIT 2 -->
+<div class="photo-section fade-in" style="padding-top:0;">
+  <div class="photo-grid reverse">
+    <div class="photo-wrap">
+      <img src="https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=700&h=340&fit=crop&auto=format" alt="Parent and child learning together on tablet">
+      <div class="photo-badge">
+        <div class="photo-badge-icon">📊</div>
+        <div>
+          <div class="photo-badge-text">Weekly report sent</div>
+          <div class="photo-badge-sub">3 subjects improved this week</div>
+        </div>
+      </div>
+    </div>
+    <div class="photo-content">
+      <div class="section-tag">Parents always in the loop</div>
+      <h3 class="photo-title">You'll always know <em>how they're doing</em></h3>
+      <p class="photo-desc">No need to chase a teacher for updates. LearnJA automatically sends you a clear weekly report — straight to your phone or email — every single week.</p>
+      <ul class="photo-points">
+        <li class="photo-point"><span class="photo-point-dot">✓</span>Weekly progress reports via WhatsApp or email</li>
+        <li class="photo-point"><span class="photo-point-dot">✓</span>Automatic alerts when your child struggles with a topic</li>
+        <li class="photo-point"><span class="photo-point-dot">✓</span>Badges and certificates celebrate every milestone</li>
+        <li class="photo-point"><span class="photo-point-dot">✓</span>No login required — reports come straight to you</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <!-- FEATURES -->
 <section class="features-section" id="features">
@@ -1140,6 +1368,41 @@
   </div>
 </section>
 
+<!-- PHOTO MOSAIC -->
+<section class="mosaic-section">
+  <div class="mosaic-inner">
+    <div class="section-tag" style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);">Real children. Real learning.</div>
+    <h2 class="section-title" style="color:#fff;margin-top:6px;">Every child in Jamaica <em style="color:var(--gold);">deserves this.</em></h2>
+    <div class="mosaic-grid">
+      <div class="mosaic-img tall">
+        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=500&h=420&fit=crop&auto=format" alt="Jamaican child smiling while learning">
+        <div class="overlay"></div>
+        <div class="overlay-text">Grade 3 · Kingston</div>
+      </div>
+      <div class="mosaic-img">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=200&fit=crop&auto=format" alt="Child reading on tablet">
+        <div class="overlay"></div>
+        <div class="overlay-text">Language Arts · Grade 2</div>
+      </div>
+      <div class="mosaic-img">
+        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=400&h=200&fit=crop&auto=format" alt="Children celebrating learning">
+        <div class="overlay"></div>
+        <div class="overlay-text">Science Explorer · Grade 5</div>
+      </div>
+      <div class="mosaic-img">
+        <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=400&h=200&fit=crop&auto=format" alt="Child using tablet for math">
+        <div class="overlay"></div>
+        <div class="overlay-text">Mathematics · Grade 4</div>
+      </div>
+      <div class="mosaic-img">
+        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=200&fit=crop&auto=format" alt="Books and learning materials">
+        <div class="overlay"></div>
+        <div class="overlay-text">All subjects covered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SUBJECTS -->
 <section class="section fade-in" id="subjects">
   <div class="section-tag">Subjects</div>
@@ -1147,36 +1410,42 @@
   <p class="section-sub">All subjects taught in Jamaican primary schools, fully digitised and aligned to MOEYI standards for every grade.</p>
   <div class="subjects-grid">
     <div class="subj-card math">
+      <img class="subj-img" src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=400&h=120&fit=crop&auto=format" alt="Mathematics">
       <div class="subj-emoji">🔢</div>
       <div class="subj-title">Mathematics</div>
       <div class="subj-grades">Grades 1–6</div>
       <div class="subj-topics">Number sense · Fractions · Geometry · Measurement · Data handling · Problem solving</div>
     </div>
     <div class="subj-card lang">
+      <img class="subj-img" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=120&fit=crop&auto=format" alt="Language Arts">
       <div class="subj-emoji">📖</div>
       <div class="subj-title">Language Arts</div>
       <div class="subj-grades">Grades 1–6</div>
       <div class="subj-topics">Reading · Writing · Grammar · Spelling · Comprehension · Creative writing</div>
     </div>
     <div class="subj-card sci">
+      <img class="subj-img" src="https://images.unsplash.com/photo-1532094349884-543559c5e4f3?w=400&h=120&fit=crop&auto=format" alt="Science">
       <div class="subj-emoji">🔬</div>
       <div class="subj-title">Science</div>
       <div class="subj-grades">Grades 1–6</div>
       <div class="subj-topics">Life science · Earth science · Health & nutrition · The human body · Plants & animals</div>
     </div>
     <div class="subj-card ss">
+      <img class="subj-img" src="https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?w=400&h=120&fit=crop&auto=format" alt="Jamaica Social Studies">
       <div class="subj-emoji">🌍</div>
       <div class="subj-title">Social Studies</div>
       <div class="subj-grades">Grades 1–6</div>
       <div class="subj-topics">Jamaican history · Geography · Civics · National heroes · Caribbean community</div>
     </div>
     <div class="subj-card re">
+      <img class="subj-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=120&fit=crop&auto=format" alt="Religious Education">
       <div class="subj-emoji">🕊️</div>
       <div class="subj-title">Religious Education</div>
       <div class="subj-grades">Grades 1–6</div>
       <div class="subj-topics">Values · Morals · Stories · Community · Character development</div>
     </div>
     <div class="subj-card art">
+      <img class="subj-img" src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=120&fit=crop&auto=format" alt="Arts and Music">
       <div class="subj-emoji">🎨</div>
       <div class="subj-title">Arts & Music</div>
       <div class="subj-grades">Grades 1–6</div>
@@ -1247,11 +1516,14 @@
 
 
 <!-- CTA -->
-<section class="cta-section">
-  <div class="cta-title">🇯🇲 Give your child the education they deserve.</div>
-  <p class="cta-sub">Join thousands of Jamaican families already learning with LearnJA. Start free — no credit card needed.</p>
-  <a href="#pricing" class="cta-btn">Start learning today</a>
-  <p class="cta-note">Free plan available · Cancel anytime · Safe for children</p>
+<section class="cta-section" style="position:relative;overflow:hidden;">
+  <img src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=1400&h=400&fit=crop&auto=format" alt="Jamaica landscape" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.15;">
+  <div style="position:relative;z-index:2;">
+    <div class="cta-title">🇯🇲 Give your child the education they deserve.</div>
+    <p class="cta-sub">Join thousands of Jamaican families already learning with LearnJA. Start free — no credit card needed.</p>
+    <a href="#pricing" class="cta-btn">Start learning today</a>
+    <p class="cta-note">Free plan available · Cancel anytime · Safe for children</p>
+  </div>
 </section>
 
 <!-- FOOTER -->
