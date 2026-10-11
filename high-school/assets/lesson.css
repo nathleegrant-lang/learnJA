@@ -153,3 +153,10 @@ body.hc .chip,body.hc .fb{border:1.5px solid #000}
 .acard.txt{width:auto;max-width:220px;padding:10px 14px;justify-content:center;min-height:52px}
 .brandline{font-family:'Baloo 2',var(--font);font-weight:800;font-size:.95rem!important;opacity:1!important;margin:0 0 2px!important;letter-spacing:-.2px}
 .brandline span{color:#ffb02e}
+.objectives{border:2px solid #6a3fc0;background:#f7f3ff;border-radius:14px;padding:12px 18px;margin:14px 0}
+.objectives h3{margin:4px 0 6px;color:#3d2a73}
+.objectives ul{margin:4px 0 8px;padding-left:22px}
+.objdetails summary{cursor:pointer;font-weight:600;color:#4b2a9a;padding:4px 0;min-height:32px}
+.objdetails[open] summary{margin-bottom:4px}
+.objwhere{font-weight:700;color:#4b2a9a}
+.objnote{font-size:.9rem;color:var(--muted)}

@@ -19,6 +19,9 @@
    2. Change id (must be unique), grade, term, title, goals and steps.
    3. Add a matching entry to catalog.js so it appears on the hub.
 
+   OBJECTIVES: goals (student-friendly "I can" statements) and curriculum (official
+   objectives) appear on the first page, under the 🎯 Objectives button and in teacher notes.
+
    STEP:  {phase:'engage'|'explore'|'explain'|'elaborate'|'evaluate',
            name:'short nav name', title:'page heading', lead:'intro sentence',
            mission:['step 1','step 2','step 3'], patois:'optional', blocks:[...]}
@@ -57,6 +60,7 @@ window.LESSON={
  grade:7, term:1, subject:'Mathematics', strand:'Strand name',
  title:'Lesson title',
  goals:['first goal','second goal','third goal'],
+ curriculum:{framework:'NSC Mathematics, Grade 7',term:'Term 1',unit:'Unit name from the curriculum guide',strand:'Strand',standard:'Standard statement from the guide',objectives:['Specific objective copied from the guide'],focus:'What this lesson focuses on',note:'Source of the objectives'},
  glossary:[['Word','Meaning in simple language.']],
  teacher:{time:'about 60 minutes',curriculum:'Curriculum reference',flow:[['Engage','8 min','What students do','Teacher move']],misconceptions:['A common mistake'],extension:'An extension idea'},
  steps:[

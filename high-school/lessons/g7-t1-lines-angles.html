@@ -155,6 +155,12 @@ body.hc .chip,body.hc .fb{border:1.5px solid #000}
  body.printing #summary,body.printing #summary *{visibility:visible}
  body.printing #summary{position:absolute;left:0;top:0;width:100%;border:2px solid #000}
 }
+.objectives{border:2px solid #6a3fc0;background:#f7f3ff;border-radius:14px;padding:12px 18px;margin:14px 0}
+.objectives h3{margin:4px 0 6px;color:#3d2a73}
+.objectives ul{margin:4px 0 8px;padding-left:22px}
+.objdetails summary{cursor:pointer;font-weight:600;color:#4b2a9a;padding:4px 0}
+.objwhere{font-weight:700;color:#4b2a9a}
+.objnote{font-size:.9rem;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -175,6 +181,7 @@ body.hc .chip,body.hc .fb{border:1.5px solid #000}
  <button type="button" id="tContrast" aria-pressed="false">High contrast</button>
  <button type="button" id="tCalm" aria-pressed="false">Less motion</button>
  <button type="button" id="tPatois" aria-pressed="false">Patois help</button>
+ <button type="button" id="tObj">🎯 Objectives</button>
  <button type="button" id="tGloss">📖 Word bank</button>
  <button type="button" id="tTeacher">Teacher notes</button>
 </div>
@@ -188,6 +195,7 @@ body.hc .chip,body.hc .fb{border:1.5px solid #000}
 <section class="step" id="s-spot" data-phase="engage" data-name="Spot the maths" data-task="scene">
  <h2 tabindex="-1">Spot the maths in the street</h2>
  <p class="lead">Lines and angles are everywhere in Jamaica: on our roads, our rooftops and even on the Half Way Tree clock. Can you find the hidden maths?</p>
+ <div class="objectives"><h3>🎯 What you will learn today</h3><ul class="say"><li>describe points, lines, line segments and rays</li><li>identify parallel, intersecting and perpendicular lines</li><li>name angles as acute, right, obtuse, straight or reflex</li><li>use angle facts to find missing angles</li><li>find equal and supplementary angles made by a transversal crossing parallel lines</li></ul><details class="objdetails"><summary>Curriculum objectives (NSC Mathematics, Grade 8 | Term 1 | Unit 4: Geometry)</summary><p><strong>Strand:</strong> Geometry</p><p><strong>Standard:</strong> Explore paths, geometric shapes, and space and make generalizations about geometric relationships within the environment.</p><p><strong>Specific objectives. Students will be able to:</strong></p><ul><li>Investigate the relationship among angles formed by: (a) a transversal and two or more parallel lines; (b) intersecting non-perpendicular lines.</li></ul><p><strong>Also reviewed:</strong> points, lines, segments and rays; parallel and perpendicular lines; and naming angles by size. These are prior learning for this objective.</p><p class="objnote">Source: National Standards Curriculum Guide, Mathematics Grades 7-9 (MoEYI, 2018), Grade 8, Term 1, Unit 4 (Geometry). This lesson introduces it early, in Grade 7.</p></details></div>
  <div class="mission"><h3>Your mission</h3><ol><li>Tap each purple <strong>?</strong> in the picture. On a keyboard, press Tab to move and Enter to choose.</li><li>Read what you discover in the box below the picture.</li><li>Find all 7 to earn your first star.</li></ol></div>
  <div class="scene">
   <svg id="streetSvg" viewBox="0 0 800 420" role="group" aria-labelledby="streetTitle">
@@ -415,6 +423,11 @@ body.hc .chip,body.hc .fb{border:1.5px solid #000}
 <footer>Lines &amp; Angles Lab | Grade 7 Mathematics (Geometry) | Progress is saved in this browser only.</footer>
 <div id="toast" role="status" aria-live="polite"></div>
 
+<dialog id="objectives" aria-labelledby="obTitle">
+ <div class="dlg-head"><h2 id="obTitle">🎯 Lesson objectives</h2><button type="button" data-close>Close</button></div>
+ <div class="dlg-body"><h3>In my own words, by the end of this lesson I can…</h3><ul><li>describe points, lines, line segments and rays</li><li>identify parallel, intersecting and perpendicular lines</li><li>name angles as acute, right, obtuse, straight or reflex</li><li>use angle facts to find missing angles</li><li>find equal and supplementary angles made by a transversal crossing parallel lines</li></ul><h3>Curriculum objectives</h3><p class="objwhere">NSC Mathematics, Grade 8 | Term 1 | Unit 4: Geometry</p><p><strong>Strand:</strong> Geometry</p><p><strong>Standard:</strong> Explore paths, geometric shapes, and space and make generalizations about geometric relationships within the environment.</p><p><strong>Specific objectives. Students will be able to:</strong></p><ul><li>Investigate the relationship among angles formed by: (a) a transversal and two or more parallel lines; (b) intersecting non-perpendicular lines.</li></ul><p><strong>Also reviewed:</strong> points, lines, segments and rays; parallel and perpendicular lines; and naming angles by size. These are prior learning for this objective.</p><p class="objnote">Source: National Standards Curriculum Guide, Mathematics Grades 7-9 (MoEYI, 2018), Grade 8, Term 1, Unit 4 (Geometry). This lesson introduces it early, in Grade 7.</p></div>
+</dialog>
+
 <dialog id="glossary" aria-labelledby="glTitle">
  <div class="dlg-head"><h2 id="glTitle">📖 Word bank</h2><button type="button" data-close>Close</button></div>
  <div class="dlg-body"><label for="glSearch">Find a word:</label> <input type="text" id="glSearch" placeholder="e.g. ray"><div id="glList"></div></div>
@@ -489,7 +502,7 @@ function speak(text,onend){if(!('speechSynthesis' in window)){toast('Read aloud 
 $('tRead').onclick=()=>{if(speaking){stopSpeech();return}const s=steps[current];const parts=[...s.querySelectorAll('h2,.lead,.mission li,.explain,.say,.patois')].filter(e=>e.offsetParent!==null).map(e=>e.innerText.trim()).filter(Boolean);if(speak(parts.join('. '),stopSpeech)){speaking=true;$('tRead').setAttribute('aria-pressed','true');$('tRead').textContent='⏹ Stop reading'}};
 document.addEventListener('click',e=>{const b=e.target.closest('[data-say]');if(b)speak(b.dataset.say)});
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>b.closest('dialog').close());
-$('tTeacher').onclick=()=>$('teacher').showModal();
+$('tTeacher').onclick=()=>$('teacher').showModal();$('tObj').onclick=()=>$('objectives').showModal();
 $('tGloss').onclick=()=>{$('glossary').showModal();$('glSearch').focus()};
 $('resetAll').onclick=()=>{if(confirm('Reset all progress, answers and settings on this device?')){try{localStorage.removeItem(KEY)}catch(e){}location.reload()}};
 

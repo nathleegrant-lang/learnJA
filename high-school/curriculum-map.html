@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curriculum Map | LearnJA High School</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2a2140;--muted:#5d5478;--line:#ddd4ee;--grape:#3d2a73;--mango:#ffb02e}
+*{box-sizing:border-box}body{margin:0;font-family:'Lexend',system-ui,Arial,sans-serif;color:var(--ink);background:#f8f5fd;line-height:1.55}
+header{background:var(--grape);color:#fff;padding:18px max(16px,calc((100vw - 1100px)/2))}
+header h1{margin:0;font-size:1.5rem}header p{margin:2px 0 0;color:#d6cdf2}
+.bar{display:flex;flex-wrap:wrap;gap:8px;padding:10px max(16px,calc((100vw - 1100px)/2));background:#2e1f5a}
+.bar a,.bar button{font:inherit;font-size:.85rem;color:#fff;background:#4a3590;border:1.5px solid #6650b0;border-radius:10px;padding:6px 12px;text-decoration:none;cursor:pointer;min-height:40px}
+.bar button[aria-pressed=true]{background:var(--mango);color:#2a2140;border-color:var(--mango)}
+main{max-width:1100px;margin:0 auto;padding:16px}
+h2{color:var(--grape);margin:26px 0 6px}h3{margin:16px 0 6px;font-size:1.02rem}
+.note{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-size:.92rem}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;font-size:.9rem}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}th{background:#efe8fb}
+.ready{font-weight:700;color:#155c35}.planned{color:var(--muted)}
+td a{color:#4b2a9a;font-weight:600}
+@media print{.bar{display:none}header{background:#fff;color:#000}header p{color:#000}body{background:#fff}}
+</style>
+</head>
+<body>
+<header><h1>LearnJA High School: Mathematics Curriculum Map</h1><p>Grades 7 to 11, term by term</p></header>
+<div class="bar"><a href="index.html">← All lessons</a><span id="filters"></span><button type="button" onclick="window.print()">🖨 Print</button></div>
+<main>
+<p class="note"><strong>Sources.</strong> Grades 7–9: NSC Mathematics Curriculum Guide, Grades 7–9 (MoEYI, 2018). Grades 10–11: CSEC Mathematics Syllabus, CXC 05/G/SYLL 16 (amended 2025, examinations from May–June 2027), with the Grade 10/11 split following Herbert Morrison Technical High School's curriculum guides. Objective codes such as "M1 2.1" mean Module 1, specific objective 2.1. Term placement for Grades 10–11 is a suggested sequence.</p>
+<div id="map"></div>
+</main>
+<script src="catalog.js"></script>
+<script>
+(function(){var L=window.LESSONS,S=window.SITE,show='all';
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var f=document.getElementById('filters');[['all','All grades'],[7,'Grade 7'],[8,'Grade 8'],[9,'Grade 9'],[10,'Grade 10'],[11,'Grade 11']].forEach(function(o){var b=document.createElement('button');b.type='button';b.textContent=o[1];b.dataset.g=o[0];b.onclick=function(){show=o[0];draw()};f.appendChild(b)});
+function draw(){[].forEach.call(f.children,function(b){b.setAttribute('aria-pressed',String(String(b.dataset.g)===String(show)))});var h='';S.grades.forEach(function(g){if(show!=='all'&&+show!==g.n)return;var gl=L.filter(function(l){return l.grade===g.n&&l.subject==='maths'});h+='<h2>Grade '+g.n+' ('+g.level+')</h2>';S.terms.forEach(function(t){var tl=gl.filter(function(l){return l.term===t.n});if(!tl.length)return;h+='<h3>'+esc(t.name)+': '+esc(t.when)+'</h3><table><thead><tr><th style="width:4%">#</th><th>Lesson</th><th style="width:22%">Unit</th><th style="width:18%">Objectives</th><th style="width:11%">Status</th></tr></thead><tbody>'+tl.map(function(l,i){return'<tr><td>'+(i+1)+'</td><td>'+(l.status==='ready'?'<a href="'+esc(l.file)+'">'+esc(l.title)+'</a>':esc(l.title))+'<br><span class="planned">'+esc(l.strand)+'</span></td><td>'+esc(l.unit||'')+'</td><td>'+esc(l.so||'See unit')+'</td><td class="'+l.status+'">'+(l.status==='ready'?'Ready':'Planned')+'</td></tr>'}).join('')+'</tbody></table>'})});document.getElementById('map').innerHTML=h}
+draw()})();
+</script>
+</body>
+</html>
