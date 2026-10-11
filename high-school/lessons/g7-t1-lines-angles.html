@@ -20,10 +20,10 @@ body.easy{--font:'Atkinson Hyperlegible',Verdana,Arial,sans-serif;letter-spacing
 .brand{display:flex;gap:12px;align-items:center}.logo{width:46px;height:46px;flex:none}
 h1{margin:0;font-size:1.45rem;line-height:1.2}.top p{margin:0;opacity:.85;font-size:.9rem}
 .stars{background:#ffffff1f;border-radius:999px;padding:6px 14px;font-weight:700;white-space:nowrap}
-.toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:8px max(16px,calc((100vw - 1180px)/2));background:#2e1f5a}
-.toolbar button{background:#4a3590;color:#fff;border-color:#6650b0;font-size:.85rem;padding:6px 11px;min-height:40px}
+.toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:8px max(16px,calc((100vw - 1180px)/2));background:#ffb02e;border-bottom:1px solid #e8941a}
+.toolbar button{background:#3d2a73;color:#fff;border-color:#3d2a73;font-size:.85rem;padding:6px 11px;min-height:40px}
 .toolbar button:hover{background:#5a42a8}
-.toolbar button[aria-pressed=true]{background:var(--gold);color:#2a2140;border-color:var(--gold)}
+.toolbar button[aria-pressed=true]{background:#fff;color:#3d2a73;border-color:#3d2a73;box-shadow:inset 0 0 0 1px #3d2a73}
 button{font:inherit;cursor:pointer;border:1.5px solid #b3a6d6;border-radius:10px;background:#fbf9ff;color:var(--ink);padding:9px 14px;min-height:44px}
 button:hover{background:#efe9fb}
 button:disabled{opacity:.45;cursor:not-allowed}
@@ -161,6 +161,14 @@ body.hc .chip,body.hc .fb{border:1.5px solid #000}
 .objdetails summary{cursor:pointer;font-weight:600;color:#4b2a9a;padding:4px 0}
 .objwhere{font-weight:700;color:#4b2a9a}
 .objnote{font-size:.9rem;color:var(--muted)}
+
+.facts .tile{border-left-width:6px;border-left-style:solid}
+.facts .tile:nth-child(4n+1){background:#e9f6f2;border-color:#bfe3d8;border-left-color:#16766a}
+.facts .tile:nth-child(4n+2){background:#ebf1fc;border-color:#c9d8f4;border-left-color:#2f5fc4}
+.facts .tile:nth-child(4n+3){background:#fff4e2;border-color:#f3dcb4;border-left-color:#a85d00}
+.facts .tile:nth-child(4n+4){background:#f4eefc;border-color:#ddd0f3;border-left-color:#6a3fc0}
+.fact-title{margin:0 0 4px;font-weight:700;color:#2a2140}.fact-text{margin:6px 0 0}
+body.hc .facts .tile{background:#fff;border-color:#000}
 </style>
 </head>
 <body>
@@ -173,7 +181,7 @@ body.hc .chip,body.hc .fb{border:1.5px solid #000}
  <div class="stars" aria-live="polite"><span aria-hidden="true">⭐</span> <span id="starCount">0</span> <span class="sr">stars earned</span> / <span id="starTotal">15</span></div>
 </header>
 <div class="toolbar" role="toolbar" aria-label="Learning tools">
- <a href="../index.html" style="color:#fff;text-decoration:none;font-size:.85rem;border:1.5px solid #6650b0;border-radius:10px;padding:6px 11px;background:#4a3590;display:inline-flex;align-items:center;min-height:40px">⌂ All lessons</a>
+ <a href="../index.html" style="color:#fff;text-decoration:none;font-size:.85rem;border:1.5px solid #3d2a73;border-radius:10px;padding:6px 11px;background:#3d2a73;display:inline-flex;align-items:center;min-height:40px">⌂ All lessons</a>
  <button type="button" id="tRead" aria-pressed="false">🔊 Read this page</button>
  <button type="button" id="tSmaller" aria-label="Make text smaller">A−</button>
  <button type="button" id="tBigger" aria-label="Make text bigger">A+</button>
@@ -595,8 +603,8 @@ function crossMini(t,known,unknown,ul='x'){const cx=150,cy=80;let s='<svg viewBo
 const transMini=(t,hi,labels)=>'<svg viewBox="0 0 650 390" role="img" aria-label="Parallel lines crossed by a transversal">'+transInner(t,hi,k=>labels[k]||'',1.7)+'</svg>';
 
 /* ---------- EXPLAIN: facts and worked examples ---------- */
-const FACTS=[['Angles on a straight line add up to 180°.',fan([{v:130,l:'130°'},{v:50,l:'50°'}])],['Angles around a point add up to 360°.',fan([{v:120,l:'120°'},{v:150,l:'150°'},{v:90,l:'90°'}],true)],['Vertically opposite angles are equal.',crossMini(55,0,2,'55°')],['Corresponding angles are equal (parallel lines).',transMini(60,{topUR:'pick',bottomUR:'pick'},{topUR:'60°',bottomUR:'60°'})],['Alternate interior angles are equal (parallel lines).',transMini(60,{topLL:'pick',bottomUR:'pick'},{topLL:'60°',bottomUR:'60°'})],['Co-interior angles add up to 180° (parallel lines).',transMini(60,{topLR:'pick',bottomUR:'pick'},{topLR:'120°',bottomUR:'60°'})]];
-$('facts').innerHTML=FACTS.map(([t,svg])=>'<div class="tile">'+svg+'<p class="say" style="margin:6px 0 0"><strong>'+t+'</strong></p></div>').join('');
+const FACTS=[['Angles on a straight line add up to 180°.|For example, if one angle is 130°, the other is 180° − 130° = 50°. Check: 130° + 50° = 180°.',fan([{v:130,l:'130°'},{v:50,l:'50°'}])],['Angles around a point add up to 360°.|A full turn is 360°. For example, 120° + 150° + 90° = 360°. If you know all the angles but one, subtract their total from 360°.',fan([{v:120,l:'120°'},{v:150,l:'150°'},{v:90,l:'90°'}],true)],['Vertically opposite angles are equal.|When two straight lines cross, the angles facing each other are the same size. For example, if one angle is 55°, the angle directly opposite it is also 55°.',crossMini(55,0,2,'55°')],['Corresponding angles are equal (parallel lines).|They sit in the same position at each crossing, making an F shape. For example, if one is 60°, the matching angle at the other crossing is also 60°.',transMini(60,{topUR:'pick',bottomUR:'pick'},{topUR:'60°',bottomUR:'60°'})],['Alternate interior angles are equal (parallel lines).|They sit between the parallel lines, on opposite sides of the transversal, making a Z shape. For example, both angles in the Z are 60°.',transMini(60,{topLL:'pick',bottomUR:'pick'},{topLL:'60°',bottomUR:'60°'})],['Co-interior angles add up to 180° (parallel lines).|They sit between the parallel lines, on the same side of the transversal, making a C shape. For example, 120° + 60° = 180°.',transMini(60,{topLR:'pick',bottomUR:'pick'},{topLR:'120°',bottomUR:'60°'})]];
+$('facts').innerHTML=FACTS.map(([t,svg])=>{const [h,x]=t.split('|');return'<div class="tile"><p class="fact-title">'+h+'</p>'+svg+'<p class="say fact-text">'+(x||'')+'</p></div>'}).join('');
 const EXAMPLES=[{q:'Find angle x on the straight line.',svg:fan([{v:140,l:'x',hi:1},{v:40,l:'40°'}]),s:['Spot the fact: these angles sit on a straight line, so they add up to 180°.','Write it: x + 40° = 180°','Work it out: x = 180° − 40° = 140°','Check: 140° + 40° = 180° ✓ Also, x looks obtuse, and 140° is obtuse.']},{q:'Find angle y around the point.',svg:fan([{v:90,l:'90°'},{v:150,l:'150°'},{v:120,l:'y',hi:1}],true),s:['Spot the fact: angles around a point add up to 360°.','Add what you know: 90° + 150° = 240°','Work it out: y = 360° − 240° = 120°','Check: 90° + 150° + 120° = 360° ✓']},{q:'The lines are parallel. Find angle z.',svg:transMini(65,{topUR:'known',bottomLR:'unknown'},{topUR:'65°',bottomLR:'z'}),s:['The angle at the bottom crossing in the same position as 65° is also 65° (corresponding angles).','That 65° and angle z sit together on a straight line.','Work it out: z = 180° − 65° = 115°','Check: z looks obtuse, and 115° is obtuse ✓']}];
 const exDone=new Set();
 EXAMPLES.forEach((ex,i)=>{const t=document.createElement('div');t.className='tile prob';t.innerHTML='<p><strong>Example '+(i+1)+':</strong> '+ex.q+'</p>'+ex.svg+'<ol class="steps-reveal">'+ex.s.map(x=>'<li hidden>'+x+'</li>').join('')+'</ol>';const b=document.createElement('button');b.type='button';b.className='go';b.textContent='Show next step';let n=0;b.onclick=()=>{const lis=t.querySelectorAll('li');lis[n].hidden=false;n++;if(n>=lis.length){b.disabled=true;b.textContent='All steps shown';exDone.add(i);if(exDone.size===EXAMPLES.length)done('examples')}};t.append(b);$('examples').append(t)});
