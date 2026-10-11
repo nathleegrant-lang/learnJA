@@ -28,7 +28,9 @@ var reduceMotion=function(){return document.body.classList.contains('calm')||mat
 
 var PKEY='jhs-prefs',SKEY='jhs-lesson:'+L.id,NKEY='jhs-student-name';
 var prefs=rd(PKEY,{fs:17});var st=rd(SKEY,{done:{},current:0,data:{}});st.data=st.data||{};st.done=st.done||{};
-var steps=L.steps||[];
+var steps=(L.steps||[]).slice();
+if((L.goals&&L.goals.length)||L.curriculum){steps.forEach(function(st0){(st0.blocks||[]).forEach(function(b){if(b.type==='quiz')b.questions.forEach(function(q){if(q.review!=null&&q.review>=1)q.review++})})});
+ steps.splice(1,0,{phase:steps[0]?steps[0].phase:'engage',name:'Today\'s objectives',title:'Today\'s objectives',lead:'Now that you have explored the topic, here is what you will learn in this lesson.',mission:['Read the goals for today.','Tap <strong>Curriculum objectives</strong> to see the official objectives.','Press Next when you are ready. You can check the goals any time with the 🎯 Objectives button.'],patois:'Dis a wah yuh a go learn today.',blocks:[{type:'objectives'}]});}
 var starSteps=steps.map(function(s,i){return(s.blocks||[]).some(function(b){return b.star})?i:-1}).filter(function(i){return i>=0});
 st.total=starSteps.length;st.title=L.title;
 function save(){wr(SKEY,st)}save();
@@ -89,6 +91,7 @@ var R={};
 R.text=function(b,box){box.innerHTML=b.html;if(b.say!==false)box.classList.add('say')};
 R.explain=function(b,box){box.className='block explain';box.innerHTML=b.html};
 R.svg=function(b,box){box.className='block scene';box.innerHTML=b.svg;var s=box.querySelector('svg');if(s&&b.alt){s.setAttribute('role','img');s.setAttribute('aria-label',b.alt)}};
+R.objectives=function(b,box){box.className='block objectives';box.innerHTML=objHTML(false)};
 R.goals=function(b,box){box.innerHTML='<h3>By the end of this lesson, I can…</h3><ul class="say">'+(L.goals||[]).map(function(g){return'<li>'+esc(g)+'</li>'}).join('')+'</ul>'};
 R.name=function(b,box){box.className='block controls';box.innerHTML='<label for="stuName">My name:</label><input type="text" id="stuName" autocomplete="given-name" placeholder="Type your name">';var i=box.querySelector('input');i.value=rd(NKEY,'')||'';i.oninput=function(){wr(NKEY,i.value)}};
 R.write=function(b,box){box.className='block grid2';b.fields.forEach(function(f){var d=el('div'),id='w-'+f.id;d.innerHTML='<label for="'+id+'">'+esc(f.label)+'</label><textarea id="'+id+'" placeholder="'+esc(f.placeholder||'')+'"></textarea>';var ta=d.querySelector('textarea');ta.value=st.data[f.id]||'';ta.oninput=function(){st.data[f.id]=ta.value;save()};box.appendChild(d)})};
@@ -107,7 +110,7 @@ R.reflect=function(b,box,ctx){var RATES=['Not yet','Getting there','I\'ve got it
 
 /* ---------- build steps ---------- */
 var secs=[],ctx_onShow=[],showHooks=[];
-steps.forEach(function(s,i){var sec=el('section','step');sec.setAttribute('data-phase',s.phase);var h='<h2 tabindex="-1">'+s.title+'</h2>';if(s.lead)h+='<p class="lead">'+s.lead+'</p>';if(i===0&&(L.goals||L.curriculum))h+='<div class="objectives">'+objHTML(false)+'</div>';if(s.mission&&s.mission.length)h+='<div class="mission"><h3>Your mission</h3><ol>'+s.mission.map(function(m){return'<li>'+m+'</li>'}).join('')+'</ol></div>';sec.innerHTML=h;$('sections').appendChild(sec);ctx_onShow=[];var ctx={i:i,complete:function(){stepDone(i)}};(s.blocks||[]).forEach(function(b){var box=el('div','block');sec.appendChild(box);if(R[b.type])R[b.type](b,box,ctx);else box.textContent='Unknown block type: '+b.type});if(s.patois)sec.appendChild(el('p','patois','<strong>Inna Patois:</strong> '+s.patois));showHooks[i]=ctx_onShow;secs.push(sec)});
+steps.forEach(function(s,i){var sec=el('section','step');sec.setAttribute('data-phase',s.phase);var h='<h2 tabindex="-1">'+s.title+'</h2>';if(s.lead)h+='<p class="lead">'+s.lead+'</p>';if(s.mission&&s.mission.length)h+='<div class="mission"><h3>Your mission</h3><ol>'+s.mission.map(function(m){return'<li>'+m+'</li>'}).join('')+'</ol></div>';sec.innerHTML=h;$('sections').appendChild(sec);ctx_onShow=[];var ctx={i:i,complete:function(){stepDone(i)}};(s.blocks||[]).forEach(function(b){var box=el('div','block');sec.appendChild(box);if(R[b.type])R[b.type](b,box,ctx);else box.textContent='Unknown block type: '+b.type});if(s.patois)sec.appendChild(el('p','patois','<strong>Inna Patois:</strong> '+s.patois));showHooks[i]=ctx_onShow;secs.push(sec)});
 [].forEach.call(document.querySelectorAll('input[type=range][data-nudge]'),nudges);
 
 function stepDone(i){if(!st.done['s'+i]){st.done['s'+i]=true;save();toast('⭐ Star earned! Great work.')}refresh()}
