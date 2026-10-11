@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lesson template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css">
+</head>
+<body>
+<noscript>This lesson needs JavaScript turned on.</noscript>
+<script src="../assets/lesson-engine.js"></script>
+<script>
+/* =====================================================================
+   HOW TO MAKE A NEW LESSON
+   1. Copy this file. Name it like: g8-t2-maths-ratio.html
+   2. Change id (must be unique), grade, term, title, goals and steps.
+   3. Add a matching entry to catalog.js so it appears on the hub.
+
+   STEP:  {phase:'engage'|'explore'|'explain'|'elaborate'|'evaluate',
+           name:'short nav name', title:'page heading', lead:'intro sentence',
+           mission:['step 1','step 2','step 3'], patois:'optional', blocks:[...]}
+   A step earns a star when one of its blocks has  star:true  and is completed.
+
+   BLOCK TYPES
+   text      {type:'text', html:'<p>...</p>'}
+   explain   {type:'explain', html:'...'}                  blue "learn" box
+   svg       {type:'svg', svg:'<svg ...>', alt:'description'}
+   name      {type:'name'}                                 student name box
+   goals     {type:'goals'}                                lists lesson goals
+   write     {type:'write', fields:[{id,label,placeholder}]}
+   predict   {type:'predict', q, options:[...], star}      saved prediction
+   recall    {type:'recall', text}                         shows prediction again
+   hotspots  {type:'hotspots', viewBox, svg, spots:[{x,y,t,d}], star}
+   mcq       {type:'mcq', questions:[{q,o:[...],a:index,why,hint,svg}], star}
+   cards     {type:'cards', need, cards:[{term,def,eg,icon}], star}
+   facts     {type:'facts', facts:[{text,svg}]}
+   examples  {type:'examples', examples:[{q,svg,steps:[...]}], star}
+   sort      {type:'sort', bins:[{id,label,hint}], items:[{label,bin,svg}], star}
+   problems  {type:'problems', need, levels:{bronze:[...],silver:[...],gold:[...]}, star}
+             problem: {c:context, q:question, a:answer (number or text, or a list), tol,
+                       h:[hint1,hint2], sol:'worked solution', wrong:'optional tip', svg}
+   custom    {type:'custom', html, init:function(box, api){...}, star}
+             api: complete(), toast(msg), speak(text), nudges(rangeInput),
+                  kit (drawing helpers), get(key), set(key,value)
+   quiz      {type:'quiz', questions:[{q,o,a,hint,why,review:stepIndex}], star}
+   reflect   {type:'reflect', two:'label for the "2" prompt', star}
+
+   DRAWING HELPERS (LessonKit): K.numberLine(min,max,marks,opts), K.fan(parts,full),
+   K.sector(cx,cy,r,a0,a1), K.pt(cx,cy,r,deg)
+   ===================================================================== */
+var K=window.LessonKit;
+window.LESSON={
+ id:'template-lesson',
+ grade:7, term:1, subject:'Mathematics', strand:'Strand name',
+ title:'Lesson title',
+ goals:['first goal','second goal','third goal'],
+ glossary:[['Word','Meaning in simple language.']],
+ teacher:{time:'about 60 minutes',curriculum:'Curriculum reference',flow:[['Engage','8 min','What students do','Teacher move']],misconceptions:['A common mistake'],extension:'An extension idea'},
+ steps:[
+  {phase:'engage',name:'Hook',title:'Engage: hook the students',lead:'A question or picture from Jamaican life.',mission:['First instruction','Second instruction','Third instruction'],
+   blocks:[{type:'name'},{type:'goals'},{type:'predict',star:true,q:'Your prediction question?',options:['Choice A','Choice B','Not sure yet']}]},
+  {phase:'explore',name:'Investigate',title:'Explore: investigate',lead:'Students try things before they are told.',mission:['Try it','Notice a pattern','Answer the questions'],
+   blocks:[{type:'mcq',star:true,questions:[{q:'Sample question?',o:['Right answer','Wrong answer'],a:0,why:'Why it is right.',hint:'A helpful hint.'}]},{type:'recall',text:'Was your prediction correct?'}]},
+  {phase:'explain',name:'Key words',title:'Explain: words and facts',lead:'Give names to what students discovered.',mission:['Flip the cards','Read the facts','Work through the example'],
+   blocks:[{type:'cards',star:true,need:2,cards:[{term:'Word 1',def:'Meaning',eg:'Example'},{term:'Word 2',def:'Meaning',eg:'Example'}]},{type:'examples',examples:[{q:'Worked example question',steps:['Step 1','Step 2','Answer']}]}]},
+  {phase:'elaborate',name:'Apply it',title:'Elaborate: apply it',lead:'Real Jamaican problems at three levels.',mission:['Choose a level','Use hints if stuck','Solve 2 problems'],
+   blocks:[{type:'problems',star:true,need:1,levels:{bronze:[{c:'Context',q:'Question?',a:5,h:['Hint 1','Hint 2'],sol:'Worked solution.'}],silver:[{c:'Context',q:'Question?',a:10,h:['Hint 1','Hint 2'],sol:'Worked solution.'}],gold:[{c:'Context',q:'Question?',a:20,h:['Hint 1','Hint 2'],sol:'Worked solution.'}]}}]},
+  {phase:'evaluate',name:'Quiz',title:'Evaluate: check your understanding',lead:'Questions with a hint and a second try.',mission:['Read carefully','Try again if wrong','Review what you missed'],
+   blocks:[{type:'quiz',star:true,questions:[{q:'Sample quiz question?',o:['Right','Wrong'],a:0,hint:'Hint',why:'Explanation',review:1}]}]},
+  {phase:'evaluate',name:'Reflect',title:'Reflect on your learning',lead:'Rate yourself and complete the 3-2-1.',mission:['Rate each goal','Write your 3-2-1','Print your summary'],
+   blocks:[{type:'reflect',star:true}]}
+ ]
+};
+</script>
+</body>
+</html>

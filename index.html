@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LearnJA — Jamaica's Online Primary School</title>
+<title>LearnJA — Jamaica's Online School | Grades 1–11</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -1092,6 +1092,24 @@
     .trust-bar { padding: 16px 20px; gap: 20px; }
     footer { padding: 32px 20px; }
   }
+
+  /* PATHWAYS */
+  .pathways { padding: 80px 40px 20px; max-width: 1100px; margin: 0 auto; }
+  .path-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 24px; margin-top: 36px; }
+  .path-card { border-radius: var(--radius); padding: 30px 30px 26px; display: flex; flex-direction: column; gap: 12px; text-decoration: none; transition: transform .2s; }
+  .path-card:hover { transform: translateY(-4px); }
+  .path-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+  .path-card.primary { background: var(--green-light); border: 2px solid var(--green-mid); color: var(--green); }
+  .path-card.high { background: #efe8fb; border: 2px solid #6a3fc0; color: #3d2a73; }
+  .path-level { font-family: 'Baloo 2', sans-serif; font-size: 15px; font-weight: 800; }
+  .path-title { font-family: 'Baloo 2', sans-serif; font-size: 30px; font-weight: 800; line-height: 1.1; color: #1a1a1a; }
+  .path-desc { font-size: 15px; color: #444; line-height: 1.6; }
+  .path-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .path-tag { font-size: 12px; font-weight: 800; padding: 5px 12px; border-radius: 20px; background: #fff; }
+  .path-btn { margin-top: auto; align-self: flex-start; font-weight: 800; font-size: 15px; padding: 12px 24px; border-radius: 50px; }
+  .path-card.primary .path-btn { background: var(--green); color: #fff; }
+  .path-card.high .path-btn { background: #ffb02e; color: #3d2400; }
+  @media (max-width: 760px) { .pathways { padding: 60px 20px 10px; } .path-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -1102,6 +1120,7 @@
   <ul class="nav-links">
     <li><a href="#how">How it works</a></li>
     <li><a href="#features">Features</a></li>
+    <li><a href="#pathways">Primary &amp; High School</a></li>
     <li><a href="#subjects">Subjects</a></li>
     <li><a href="#pricing">Pricing</a></li>
   </ul>
@@ -1123,14 +1142,14 @@
         Made for Jamaican students
       </div>
       <h1>Learning that feels like <em>home</em></h1>
-      <p class="hero-sub">Jamaica's first fully online primary school platform for Grades 1–6. Curriculum-aligned, gamified, and powered by AI — no teacher needed.</p>
+      <p class="hero-sub">Jamaica's first fully online school platform for Grades 1–11, from primary school right through to CSEC. Curriculum-aligned, gamified, and powered by AI.</p>
       <div class="hero-btns">
         <a href="#pricing" class="hero-btn-main">Start free today</a>
         <a href="#how" class="hero-btn-sec">See how it works</a>
       </div>
       <div class="hero-stats">
         <div>
-          <div class="hero-stat-val">6</div>
+          <div class="hero-stat-val">11</div>
           <div class="hero-stat-lbl">Grade levels</div>
         </div>
         <div>
@@ -1221,6 +1240,29 @@
   <div class="trust-item"><span class="trust-icon">🔒</span> Safe for children</div>
 </div>
 
+<!-- PATHWAYS -->
+<section class="pathways fade-in" id="pathways">
+  <div class="section-tag">Two pathways, one platform</div>
+  <h2 class="section-title">From Grade 1 <em>all the way to CSEC</em></h2>
+  <p class="section-sub">Choose the pathway for your child's stage. Both are built around Jamaican life, with read-aloud, guided feedback and stars to keep students motivated.</p>
+  <div class="path-grid">
+    <a class="path-card primary" href="lesson-intro.html">
+      <div class="path-level">Primary School</div>
+      <div class="path-title">Grades 1–6</div>
+      <div class="path-desc">Playful, narrated lessons with Miss Johnson, hands-on activities and PEP preparation.</div>
+      <div class="path-tags"><span class="path-tag">MOEYI aligned</span><span class="path-tag">PEP preparation</span><span class="path-tag">Miss Johnson</span></div>
+      <span class="path-btn">Explore primary lessons</span>
+    </a>
+    <a class="path-card high" href="high-school/index.html">
+      <div class="path-level">High School</div>
+      <div class="path-title">Grades 7–11</div>
+      <div class="path-desc">Interactive 5E lessons organised by grade, term and topic, with Bronze, Silver and Gold challenges and CSEC preparation.</div>
+      <div class="path-tags"><span class="path-tag">NSC Grades 7–9</span><span class="path-tag">CSEC Grades 10–11</span><span class="path-tag">Mathematics first</span></div>
+      <span class="path-btn">Explore high school lessons</span>
+    </a>
+  </div>
+</section>
+
 <!-- HOW IT WORKS -->
 <section class="section fade-in" id="how">
   <div class="section-tag">How it works</div>
@@ -1231,7 +1273,7 @@
       <img class="how-card-img" src="Gradeselect1.png" alt="Child selecting grade on tablet">
       <div class="how-num">01</div>
       <div class="how-title">Pick your grade</div>
-      <div class="how-desc">Your child selects their grade (1–6) and the AI instantly builds a personalised learning path just for them.</div>
+      <div class="how-desc">Your child selects their grade (1–11) and the AI instantly builds a personalised learning path just for them.</div>
     </div>
     <div class="how-card fade-in">
       <img class="how-card-img" src="cartoonwatching.png" alt="Jamaican boy watching lesson">
@@ -1275,7 +1317,7 @@
         <li class="photo-point"><span class="photo-point-dot">✓</span>Word problems set in Jamaican markets, parishes and landmarks</li>
         <li class="photo-point"><span class="photo-point-dot">✓</span>AI feedback voiced in warm, encouraging Jamaican English</li>
         <li class="photo-point"><span class="photo-point-dot">✓</span>Stories and examples featuring Jamaican national heroes</li>
-        <li class="photo-point"><span class="photo-point-dot">✓</span>Fully aligned to MOEYI primary school curriculum</li>
+        <li class="photo-point"><span class="photo-point-dot">✓</span>Aligned to the MOEYI curriculum (Grades 1–9) and CSEC syllabuses (Grades 10–11)</li>
       </ul>
     </div>
   </div>
@@ -1313,7 +1355,7 @@
   <div class="features-inner">
     <div class="section-tag">Platform features</div>
     <h2 class="section-title">Everything a student needs. <em>Nothing more.</em></h2>
-    <p class="section-sub">Built specifically for Jamaican primary school children — culturally relevant, fully automated, and genuinely fun.</p>
+    <p class="section-sub">Built specifically for Jamaican students from Grade 1 to Grade 11 — culturally relevant, fully automated, and genuinely fun.</p>
     <div class="feat-grid">
       <div class="feat-card">
         <img src="GirlHeadphone.png" alt="Natural text-to-speech" style="width:100%;height:130px;object-fit:cover;border-radius:12px;margin-bottom:14px;display:block;">
@@ -1364,30 +1406,30 @@
 <section class="section fade-in" id="subjects">
   <div class="section-tag">Subjects</div>
   <h2 class="section-title">The full <em>Jamaican curriculum</em> — online.</h2>
-  <p class="section-sub">All subjects taught in Jamaican primary schools, fully digitised and aligned to MOEYI standards for every grade.</p>
+  <p class="section-sub">The subjects taught in Jamaican schools, fully digitised and aligned to MOEYI standards, with CSEC preparation for Grades 10 and 11.</p>
   <div class="subjects-grid">
     <div class="subj-card math">
       <img class="subj-img" src="Mathematics.png" alt="Mathematics">
       <div class="subj-title">Mathematics</div>
-      <div class="subj-grades">Grades 1–6</div>
+      <div class="subj-grades">Grades 1–11</div>
       <div class="subj-topics">Number sense · Fractions · Geometry · Measurement · Data handling · Problem solving</div>
     </div>
     <div class="subj-card lang">
       <img class="subj-img" src="Language_Arts.png" alt="Language Arts">
       <div class="subj-title">Language Arts</div>
-      <div class="subj-grades">Grades 1–6</div>
+      <div class="subj-grades">Grades 1–6 · High school coming soon</div>
       <div class="subj-topics">Reading · Writing · Grammar · Spelling · Comprehension · Creative writing</div>
     </div>
     <div class="subj-card sci">
       <img class="subj-img" src="Science.png" alt="Science">
       <div class="subj-title">Science</div>
-      <div class="subj-grades">Grades 1–6</div>
+      <div class="subj-grades">Grades 1–6 · High school coming soon</div>
       <div class="subj-topics">Life science · Earth science · Health & nutrition · The human body · Plants & animals</div>
     </div>
     <div class="subj-card ss">
       <img class="subj-img" src="Jamaaica_Town.png" alt="Social Studies">
       <div class="subj-title">Social Studies</div>
-      <div class="subj-grades">Grades 1–6</div>
+      <div class="subj-grades">Grades 1–6 · High school coming soon</div>
       <div class="subj-topics">Jamaican history · Geography · Civics · National heroes · Caribbean community</div>
     </div>
     <div class="subj-card re">
@@ -1502,11 +1544,12 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Learn<span>JA</span></div>
-  <p style="font-size:13px;margin-bottom:4px;">Jamaica's Online Primary School · Grades 1–6</p>
+  <p style="font-size:13px;margin-bottom:4px;">Jamaica's Online School · Primary (Grades 1–6) · High School (Grades 7–11)</p>
   <ul class="footer-links">
     <li><a href="#">About</a></li>
-    <li><a href="#">Subjects</a></li>
-    <li><a href="#">Pricing</a></li>
+    <li><a href="#subjects">Subjects</a></li>
+    <li><a href="high-school/index.html">High School</a></li>
+    <li><a href="#pricing">Pricing</a></li>
     <li><a href="#">Privacy Policy</a></li>
     <li><a href="#">Terms of Use</a></li>
     <li><a href="#">Contact</a></li>

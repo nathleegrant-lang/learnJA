@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2a2140;--muted:#5d5478;--bg:#f8f5fd;--paper:#fff;--line:#ddd4ee;--grape:#3d2a73;--grape2:#6a3fc0;--mango:#ffb02e;--fs:17px;--font:'Lexend',system-ui,'Segoe UI',Arial,sans-serif}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html{font-size:var(--fs)}
+body{margin:0;font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.6}
+body.easy{--font:'Atkinson Hyperlegible',Verdana,Arial,sans-serif;letter-spacing:.02em;word-spacing:.08em}
+body.hc{--bg:#fff;--line:#000;--ink:#000;--muted:#000}
+body.hc button,body.hc .card,body.hc input{border:2px solid #000!important}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:8px;background:#fff;padding:8px 12px;z-index:9;border-radius:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:3px solid #d96a00;outline-offset:3px}
+button{font:inherit;cursor:pointer;border:1.5px solid #b3a6d6;border-radius:12px;background:#fbf9ff;color:var(--ink);padding:9px 14px;min-height:44px}
+button:hover{background:#efe9fb}
+.top{background:var(--grape);color:#fff;padding:22px max(16px,calc((100vw - 1100px)/2)) 18px}
+.brand{display:flex;gap:14px;align-items:center}
+.logo{width:54px;height:54px;flex:none}
+h1{margin:0;font-size:1.7rem;line-height:1.2}
+.top p{margin:2px 0 0;color:#d6cdf2}
+.toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:8px max(16px,calc((100vw - 1100px)/2));background:#2e1f5a}
+.toolbar button{background:#4a3590;color:#fff;border-color:#6650b0;font-size:.85rem;padding:6px 11px;min-height:40px}
+.toolbar button:hover{background:#5a42a8}
+.homelink{color:#fff;text-decoration:none;font-size:.85rem;border:1.5px solid #6650b0;border-radius:12px;padding:6px 11px;background:#4a3590;display:inline-flex;align-items:center;min-height:40px}
+.homelink:hover{background:#5a42a8}
+.toolbar button[aria-pressed=true]{background:var(--mango);color:#2a2140;border-color:var(--mango)}
+main{max-width:1100px;margin:0 auto;padding:20px 16px 40px}
+h2{font-size:1.2rem;margin:26px 0 10px;display:flex;align-items:center;gap:10px}
+h2 .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--grape2);color:#fff;font-size:.9rem;flex:none}
+.continue{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;background:#fff1dc;border:2px solid var(--mango);border-radius:16px;padding:12px 18px}
+.continue p{margin:0}
+.go{background:var(--mango);color:#3d2400;border-color:#e8941a;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;border-radius:12px;padding:9px 16px;min-height:44px}
+.go:hover{background:#f29a1f}
+.grades{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.grade{display:flex;flex-direction:column;align-items:flex-start;text-align:left;background:var(--paper);border:2px solid var(--line);padding:12px 14px;border-radius:16px}
+.grade .big{font-size:1.7rem;font-weight:700;color:var(--grape);line-height:1.1}
+.grade .lvl{font-size:.75rem;font-weight:700;border-radius:999px;padding:2px 9px;margin-top:6px}
+.lvl.NSC{background:#dcf3ee;color:#0f5a50}.lvl.CSEC{background:#fbe4ec;color:#8f1f45}
+.grade small{color:var(--muted);font-size:.78rem;margin-top:4px}
+.grade[aria-pressed=true]{border-color:var(--grape2);background:#efe8fb;box-shadow:0 0 0 3px #d8ccf6}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.subj[aria-pressed=true],.term[aria-pressed=true]{background:var(--grape2);color:#fff;border-color:var(--grape2)}
+.soon{display:inline-flex;align-items:center;gap:6px;border:1.5px dashed #b3a6d6;border-radius:12px;padding:8px 14px;color:var(--muted);min-height:44px}
+.term{display:flex;flex-direction:column;align-items:flex-start;text-align:left;min-width:170px}
+.term small{font-size:.75rem;opacity:.85}
+.search{display:flex;gap:8px;align-items:center;margin:4px 0 0}
+.search input{font:inherit;flex:1;max-width:420px;border:1.5px solid #b3a6d6;border-radius:12px;padding:9px 12px;min-height:44px;background:#fff;color:var(--ink)}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:12px}
+.card{background:var(--paper);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.card .meta{font-size:.8rem;color:var(--muted)}
+.card h3{margin:0;font-size:1.08rem;line-height:1.3}
+.bar{height:8px;border-radius:9px;background:#e8e2f5;overflow:hidden}.bar i{display:block;height:100%;background:var(--grape2)}
+.card .foot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:auto;padding-top:6px}
+.card.planned{border-style:dashed;background:#fcfbff}
+.tag{font-size:.75rem;font-weight:700;border-radius:999px;padding:2px 9px;background:#efe8fb;color:#4b2a9a}
+.empty{background:var(--paper);border:2px dashed var(--line);border-radius:16px;padding:22px;text-align:center;color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 16px 30px}
+@media (max-width:760px){.grades{grid-template-columns:repeat(3,minmax(0,1fr))}h1{font-size:1.3rem}.term{min-width:0;flex:1}}
+</style>
+</head>
+<body>
+<a class="skip" href="#hub">Skip to lessons</a>
+<header class="top"><div class="brand"><svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#ffb02e"/><path d="M10 38 H40 M10 38 L32 12" stroke="#3d2a73" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M22 38 A12 12 0 0 0 18.5 29" stroke="#c23b48" stroke-width="3.5" fill="none"/></svg><div><h1 id="siteName"></h1><p id="siteTag"></p></div></div></header>
+<div class="toolbar" role="toolbar" aria-label="Display settings"><a href="../index.html" class="homelink">← LearnJA home</a><button type="button" id="tSmaller" aria-label="Make text smaller">A−</button><button type="button" id="tBigger" aria-label="Make text bigger">A+</button><button type="button" id="tFont" aria-pressed="false">Easy-read font</button><button type="button" id="tContrast" aria-pressed="false">High contrast</button></div>
+<main id="hub">
+ <div id="continueBox"></div>
+ <h2><span class="n" aria-hidden="true">1</span> Choose your grade</h2>
+ <div class="grades" id="grades" role="group" aria-label="Grade"></div>
+ <h2><span class="n" aria-hidden="true">2</span> Choose your subject</h2>
+ <div class="row" id="subjects" role="group" aria-label="Subject"></div>
+ <h2><span class="n" aria-hidden="true">3</span> Choose your term</h2>
+ <div class="row" id="terms" role="group" aria-label="Term"></div>
+ <h2 id="listTitle"><span class="n" aria-hidden="true">4</span> <span id="listLabel">Choose a lesson</span></h2>
+ <div class="search"><label for="q" class="sr">Search all lessons</label><input type="search" id="q" placeholder="Search all lessons, e.g. angles"></div>
+ <div class="list" id="list" aria-live="polite"></div>
+</main>
+<footer>LearnJA High School | A Shazonique's Inspiration product<br>Progress and settings are saved in this browser only. Teachers: add lessons in catalog.js.</footer>
+<script src="catalog.js"></script>
+<script>
+(function(){
+var S=window.SITE,LS=window.LESSONS||[];
+var $=function(id){return document.getElementById(id)};
+function rd(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
+function wr(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+document.title=S.name;$('siteName').textContent=S.name;$('siteTag').textContent=S.tagline;
+
+var prefs=rd('jhs-prefs',{fs:17});
+function applyPrefs(){document.documentElement.style.setProperty('--fs',(prefs.fs||17)+'px');document.body.classList.toggle('easy',!!prefs.easy);document.body.classList.toggle('hc',!!prefs.hc);$('tFont').setAttribute('aria-pressed',String(!!prefs.easy));$('tContrast').setAttribute('aria-pressed',String(!!prefs.hc))}
+$('tFont').onclick=function(){prefs.easy=!prefs.easy;wr('jhs-prefs',prefs);applyPrefs()};
+$('tContrast').onclick=function(){prefs.hc=!prefs.hc;wr('jhs-prefs',prefs);applyPrefs()};
+$('tBigger').onclick=function(){prefs.fs=Math.min(24,(prefs.fs||17)+1);wr('jhs-prefs',prefs);applyPrefs()};
+$('tSmaller').onclick=function(){prefs.fs=Math.max(14,(prefs.fs||17)-1);wr('jhs-prefs',prefs);applyPrefs()};
+applyPrefs();
+
+var sel=rd('jhs-hub',{grade:S.grades[0].n,subject:'maths',term:1});
+var m=location.hash.match(/^#g(\d+)-t(\d)-(\w+)/);if(m){sel.grade=+m[1];sel.term=+m[2];sel.subject=m[3]}
+function saveSel(){wr('jhs-hub',sel);history.replaceState(null,'','#g'+sel.grade+'-t'+sel.term+'-'+sel.subject)}
+
+function progress(l){var key=l.progressKey||('jhs-lesson:'+l.id),p=rd(key,null);if(!p||!p.done)return{n:0,t:l.total||p&&p.total||0,started:!!p};var n=Object.keys(p.done).filter(function(k){return p.done[k]}).length;return{n:n,t:l.total||p.total||n,started:true}}
+function count(f){return LS.filter(function(l){return l.status==='ready'&&f(l)}).length}
+
+function grades(){var g=$('grades');g.innerHTML='';S.grades.forEach(function(x){var b=document.createElement('button');b.type='button';b.className='grade';b.setAttribute('aria-pressed',String(sel.grade===x.n));var c=count(function(l){return l.grade===x.n});b.innerHTML='<span class="big">Grade '+x.n+'</span><span class="lvl '+x.level+'">'+x.level+'</span><small>'+esc(x.note)+'</small><small>'+c+' lesson'+(c===1?'':'s')+' ready</small>';b.onclick=function(){sel.grade=x.n;saveSel();render()};g.appendChild(b)})}
+function subjects(){var s=$('subjects');s.innerHTML='';S.subjects.forEach(function(x){if(x.ready){var b=document.createElement('button');b.type='button';b.className='subj';b.setAttribute('aria-pressed',String(sel.subject===x.id));b.textContent=x.name;b.onclick=function(){sel.subject=x.id;saveSel();render()};s.appendChild(b)}else{var t=document.createElement('span');t.className='soon';t.textContent=x.name+' (coming soon)';s.appendChild(t)}})}
+function terms(){var t=$('terms');t.innerHTML='';S.terms.forEach(function(x){var b=document.createElement('button');b.type='button';b.className='term';b.setAttribute('aria-pressed',String(sel.term===x.n));var c=count(function(l){return l.grade===sel.grade&&l.subject===sel.subject&&l.term===x.n});b.innerHTML='<strong>'+esc(x.name)+'</strong><small>'+esc(x.when)+' | '+c+' ready</small>';b.onclick=function(){sel.term=x.n;saveSel();render()};t.appendChild(b)})}
+function card(l,showWhere){var c=document.createElement('article'),p=progress(l),subj=(S.subjects.filter(function(s){return s.id===l.subject})[0]||{}).name||l.subject;c.className='card'+(l.status==='ready'?'':' planned');var where='Grade '+l.grade+' | Term '+l.term+' | '+subj;var h='<span class="meta">'+(showWhere?esc(where)+' | ':'')+esc(l.strand||'')+(l.minutes?' | about '+l.minutes+' min':'')+'</span><h3>'+esc(l.title)+'</h3>';if(l.status==='ready'){var pct=p.t?Math.round(100*p.n/p.t):0;h+='<div class="bar" aria-hidden="true"><i style="width:'+pct+'%"></i></div><span class="meta">'+(p.started?'⭐ '+p.n+' of '+p.t+' stars':'Not started yet')+'</span><div class="foot"><span class="tag">'+(p.t&&p.n>=p.t?'Complete':p.started?'In progress':'New')+'</span><a class="go" href="'+esc(l.file)+'">'+(p.t&&p.n>=p.t?'Review lesson':p.started?'Continue':'Start lesson')+'<span class="sr">: '+esc(l.title)+'</span></a></div>'}else h+='<div class="foot"><span class="tag">Coming soon</span></div>';c.innerHTML=h;return c}
+function list(){var L=$('list'),q=$('q').value.trim().toLowerCase();L.innerHTML='';var items,label;if(q){items=LS.filter(function(l){return(l.title+' '+(l.strand||'')+' grade '+l.grade).toLowerCase().indexOf(q)>=0});label='Search results for "'+$('q').value.trim()+'"'}else{items=LS.filter(function(l){return l.grade===sel.grade&&l.subject===sel.subject&&l.term===sel.term});var subj=(S.subjects.filter(function(s){return s.id===sel.subject})[0]||{}).name;label='Grade '+sel.grade+' '+subj+', Term '+sel.term}$('listLabel').textContent=label;items.sort(function(a,b){return(a.status==='ready'?0:1)-(b.status==='ready'?0:1)});items.forEach(function(l){L.appendChild(card(l,!!q))});if(!items.length)L.innerHTML='<div class="empty">'+(q?'No lessons match that search. Try a shorter word.':'Lessons for this term are on the way. Try another term, or check back soon.')+'</div>'}
+function cont(){var last=rd('jhs-last',null),box=$('continueBox');box.innerHTML='';if(!last)return;var l=LS.filter(function(x){return x.id===last.id||x.file.split('/').pop()===last.file})[0];if(!l||l.status!=='ready')return;var p=progress(l);if(p.t&&p.n>=p.t)return;box.innerHTML='<div class="continue"><p><strong>Pick up where you left off:</strong> '+esc(l.title)+' (Grade '+l.grade+')</p><a class="go" href="'+esc(l.file)+'">Continue lesson</a></div>'}
+$('q').oninput=list;
+function render(){grades();subjects();terms();list()}
+cont();render();
+})();
+</script>
+</body>
+</html>
