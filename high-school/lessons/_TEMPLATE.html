@@ -45,6 +45,15 @@
    problems  {type:'problems', need, levels:{bronze:[...],silver:[...],gold:[...]}, star}
              problem: {c:context, q:question, a:answer (number or text, or a list), tol,
                        h:[hint1,hint2], sol:'worked solution', wrong:'optional tip', svg}
+   TEACHING BLOCKS (use these so the lesson teaches first-time learners)
+   mcq refresher: add  teach:'short re-teaching'  to a question to show a refresher when it is answered wrongly
+   teach     {type:'teach', star, chunks:[{title, explain:'html', visual:'svg', example:{q, steps:[{do,why}]},
+                                          mistake:'html', check:{q,o,a,why,hint}}]}
+             one idea at a time; the next idea unlocks after the "Your turn" check
+   guided    {type:'guided', star, items:[{type:'worked',q,steps:[{do,why}]},
+                                         {type:'fill',q,steps:[{text:'... ___',blank:true,a,hint},{text}],sol},
+                                         {type:'own',q,a,hint,sol}]}      I do, we do, you do
+   key words write {{word|meaning}} inside text, explain or teach html to make a tappable definition
    custom    {type:'custom', html, init:function(box, api){...}, star}
              api: complete(), toast(msg), speak(text), nudges(rangeInput),
                   kit (drawing helpers), get(key), set(key,value)

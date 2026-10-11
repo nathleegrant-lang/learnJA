@@ -70,7 +70,7 @@ window.LESSONS=[
  {id:'g9-t3-maths-unit1b',grade:9,term:3,subject:'maths',unit:'Unit 1B: Matrices',strand:'Number',title:'Matrices',status:'planned'},
  {id:'g9-t3-maths-unit2',grade:9,term:3,subject:'maths',unit:'Unit 2: Vectors',strand:'Algebra',title:'Vectors',status:'planned'},
  {id:'g9-t3-maths-unit2b',grade:9,term:3,subject:'maths',unit:'Unit 2B: Graphing Quadratic Equations',strand:'Algebra',title:'Graphing Quadratic Functions',status:'planned'},
- {id:'g10-t1-maths-csec-numbers',grade:10,term:1,subject:'maths',unit:'CSEC Module 1',strand:'Number Theory and Computation',title:'Sets of Numbers, Order and Powers',so:'M1 1.1, 1.2, 1.15',file:'lessons/g10-t1-numbers.html',minutes:70,status:'ready'},
+ {id:'g10-t1-maths-csec-numbers',grade:10,term:1,subject:'maths',unit:'CSEC Module 1',strand:'Number Theory and Computation',title:'Sets of Numbers, Order and Powers',so:'M1 1.1, 1.2, 1.15',file:'lessons/g10-t1-numbers.html',minutes:80,status:'ready'},
  {id:'g10-t1-maths-csec-02',grade:10,term:1,subject:'maths',unit:'CSEC Module 1',strand:'Number Theory and Computation',title:'Fractions, Decimals, Percentages and Standard Form',so:'M1 1.3, 1.4, 1.9, 1.11, 1.12, 1.13',status:'planned'},
  {id:'g10-t1-maths-csec-03',grade:10,term:1,subject:'maths',unit:'CSEC Module 1',strand:'Number Theory and Computation',title:'Factors, HCF, LCM, Number Bases and Properties',so:'M1 1.5, 1.6, 1.7, 1.10',status:'planned'},
  {id:'g10-t1-maths-csec-04',grade:10,term:1,subject:'maths',unit:'CSEC Module 1',strand:'Number Theory and Computation',title:'Ratio, Rates, Proportion and Sequences',so:'M1 1.8, 1.14, 1.16–1.19',status:'planned'},

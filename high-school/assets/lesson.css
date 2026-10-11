@@ -160,3 +160,22 @@ body.hc .chip,body.hc .fb{border:1.5px solid #000}
 .objdetails[open] summary{margin-bottom:4px}
 .objwhere{font-weight:700;color:#4b2a9a}
 .objnote{font-size:.9rem;color:var(--muted)}
+
+.teachprog{font-weight:600;color:#4b2a9a;margin:4px 0 8px}
+.chunk{border:2px solid #d8ccf6;border-radius:16px;padding:14px 18px;margin:16px 0;background:#fff}
+.chunk[hidden]{display:none}
+.chunk-head{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.chunk-head h3{margin:0;font-size:1.2rem;color:#3d2a73;flex:1}
+.chunk-explain p{margin:8px 0}
+.worked{background:#f1f6ff;border:1px solid #c9d8f4;border-radius:12px;padding:10px 14px;margin:12px 0}
+.worked ol,.guided-item ol{margin:6px 0 10px;padding-left:22px}
+.worked li,.guided-item li{margin:8px 0}
+.do{display:block;font-weight:600}
+.why{display:block;color:#3a4f7a;font-size:.95rem;margin-top:2px}
+.mistake{background:#fff4f4;border:1px solid #f0c2c8;border-radius:12px;padding:10px 14px;margin:12px 0;color:#7a1f2b}
+.check{border-color:#6a3fc0;background:#f7f3ff}
+.kw{display:inline;min-height:0;padding:0 4px;border:none;border-bottom:2px dotted #6a3fc0;border-radius:4px;background:#efe8fb;color:#3d2a73;font-weight:600;font:inherit;font-weight:600;cursor:help}
+.kwdef{display:inline-block;margin:4px 6px;padding:4px 10px;border-radius:8px;background:#3d2a73;color:#fff;font-size:.9rem;font-weight:400}
+.guided-item[hidden]{display:none}
+.blank{display:inline-block;min-width:44px;border-bottom:2px solid #6a3fc0;text-align:center;color:#4b2a9a}
+.glabel{margin:0 0 4px}
