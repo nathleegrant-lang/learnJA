@@ -151,3 +151,5 @@ body.hc .chip,body.hc .fb{border:1.5px solid #000}
 .block{margin:12px 0}
 .numline-task{margin-top:8px}
 .acard.txt{width:auto;max-width:220px;padding:10px 14px;justify-content:center;min-height:52px}
+.brandline{font-family:'Baloo 2',var(--font);font-weight:800;font-size:.95rem!important;opacity:1!important;margin:0 0 2px!important;letter-spacing:-.2px}
+.brandline span{color:#ffb02e}

@@ -6,7 +6,7 @@
 <title>Learning Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#2a2140;--muted:#5d5478;--bg:#f8f5fd;--paper:#fff;--line:#ddd4ee;--grape:#3d2a73;--grape2:#6a3fc0;--mango:#ffb02e;--fs:17px;--font:'Lexend',system-ui,'Segoe UI',Arial,sans-serif}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -22,7 +22,10 @@ button{font:inherit;cursor:pointer;border:1.5px solid #b3a6d6;border-radius:12px
 button:hover{background:#efe9fb}
 .top{background:var(--grape);color:#fff;padding:22px max(16px,calc((100vw - 1100px)/2)) 18px}
 .brand{display:flex;gap:14px;align-items:center}
-.logo{width:54px;height:54px;flex:none}
+.logo{width:56px;height:56px;flex:none}
+.wordmark{font-family:'Baloo 2',var(--font);font-weight:800;font-size:2rem;letter-spacing:-.5px;line-height:1}
+.wordmark .ja{color:var(--mango)}
+.wordmark .hs{font-family:var(--font);font-weight:600;font-size:.95rem;letter-spacing:0;background:#ffffff26;border-radius:999px;padding:3px 12px;vertical-align:middle;margin-left:4px}
 h1{margin:0;font-size:1.7rem;line-height:1.2}
 .top p{margin:2px 0 0;color:#d6cdf2}
 .toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:8px max(16px,calc((100vw - 1100px)/2));background:#2e1f5a}
@@ -67,7 +70,7 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 16px 30px
 </head>
 <body>
 <a class="skip" href="#hub">Skip to lessons</a>
-<header class="top"><div class="brand"><svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#ffb02e"/><path d="M10 38 H40 M10 38 L32 12" stroke="#3d2a73" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M22 38 A12 12 0 0 0 18.5 29" stroke="#c23b48" stroke-width="3.5" fill="none"/></svg><div><h1 id="siteName"></h1><p id="siteTag"></p></div></div></header>
+<header class="top"><div class="brand"><svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#ffb02e"/><path d="M14 23.5v8.5c0 4.2 20 4.2 20 0v-8.5l-10 4.6z" fill="#4b3aa8"/><polygon points="24,11 42,19.5 24,28 6,19.5" fill="#3d2a73"/><circle cx="24" cy="19.5" r="1.8" fill="#ffb02e"/><path d="M24 19.5 L39 22.5 V31" stroke="#c23b48" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="39" cy="32.5" r="2.4" fill="#c23b48"/></svg><div><h1 id="siteName" class="wordmark"><span class="sr">LearnJA High School</span><span aria-hidden="true">Learn<span class="ja">JA</span> <span class="hs">High School</span></span></h1><p id="siteTag"></p></div></div></header>
 <div class="toolbar" role="toolbar" aria-label="Display settings"><a href="../index.html" class="homelink">← LearnJA home</a><button type="button" id="tSmaller" aria-label="Make text smaller">A−</button><button type="button" id="tBigger" aria-label="Make text bigger">A+</button><button type="button" id="tFont" aria-pressed="false">Easy-read font</button><button type="button" id="tContrast" aria-pressed="false">High contrast</button></div>
 <main id="hub">
  <div id="continueBox"></div>
@@ -90,7 +93,7 @@ var $=function(id){return document.getElementById(id)};
 function rd(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
 function wr(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-document.title=S.name;$('siteName').textContent=S.name;$('siteTag').textContent=S.tagline;
+document.title=S.name;$('siteTag').textContent=S.tagline;
 
 var prefs=rd('jhs-prefs',{fs:17});
 function applyPrefs(){document.documentElement.style.setProperty('--fs',(prefs.fs||17)+'px');document.body.classList.toggle('easy',!!prefs.easy);document.body.classList.toggle('hc',!!prefs.hc);$('tFont').setAttribute('aria-pressed',String(!!prefs.easy));$('tContrast').setAttribute('aria-pressed',String(!!prefs.hc))}
