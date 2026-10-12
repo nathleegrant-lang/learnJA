@@ -191,3 +191,24 @@ body.hc .chip,body.hc .fb{border:1.5px solid #000}
 .fact-title{margin:0 0 4px;font-weight:700;color:#2a2140}
 .fact-text{margin:6px 0 0}
 body.hc .facts .tile{background:#fff;border-color:#000}
+
+/* teacher */
+.tav{display:inline-block;flex:none;width:76px;height:76px}.tav svg{width:100%;height:100%;display:block}
+.tav-sm{width:44px;height:44px}.tav-lg{width:96px;height:96px}
+.tsays{display:flex;gap:12px;align-items:flex-start;margin:10px 0}
+.bubble{position:relative;flex:1;background:#fff;border:2px solid #d8ccf6;border-radius:16px;padding:8px 14px}
+.bubble::before{content:'';position:absolute;left:-10px;top:22px;border:9px solid transparent;border-right-color:#d8ccf6;border-left:0}
+.whead{display:flex;gap:10px;align-items:center;margin:0 0 6px}
+.mistake{display:flex;gap:10px;align-items:flex-start}
+.fbt{display:flex;gap:10px;align-items:center}
+.t-off{display:none}
+body.noteacher .tav{display:none}body.noteacher .t-on{display:none}body.noteacher .t-off{display:inline}
+body.noteacher .bubble{border:none;padding:0;background:none}body.noteacher .bubble::before{display:none}
+body.noteacher .tcard .tav{display:inline-block}
+.tpick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tcard{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:12px;border-radius:14px}
+.tcard[aria-pressed=true]{border-color:#6a3fc0;background:#efe8fb;box-shadow:0 0 0 3px #d8ccf6}
+.tcard span:last-child{font-size:.85rem;color:var(--muted)}
+.tshow{display:flex;gap:8px;align-items:center;margin:12px 0 0;font-weight:600}
+.tnote{font-size:.85rem;color:var(--muted);margin:2px 0 0}
+@media (max-width:600px){.tav{width:56px;height:56px}.tav-sm{width:38px;height:38px}}
