@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Fix my lessons | LearnJA High School</title>
+<style>
+body{margin:0;font-family:system-ui,'Segoe UI',Arial,sans-serif;background:#f8f5fd;color:#2a2140;line-height:1.6}
+main{max-width:620px;margin:40px auto;background:#fff;border:2px solid #ddd4ee;border-radius:16px;padding:24px}
+h1{margin-top:0;font-size:1.5rem;color:#3d2a73}
+button,a.btn{font:inherit;display:inline-block;padding:11px 18px;border-radius:12px;border:none;cursor:pointer;text-decoration:none;font-weight:600;margin:4px 6px 4px 0}
+.go{background:#ffb02e;color:#3d2400}.alt{background:#3d2a73;color:#fff}
+.box{background:#f3effc;border-radius:12px;padding:10px 14px;margin-top:14px}
+</style>
+</head>
+<body>
+<main>
+<h1>Fix my lessons</h1>
+<p>Use this if a lesson shows a blank page or looks out of date on this device.</p>
+<p><strong>Option 1:</strong> reset only your settings (teacher, voice, text size, Patois help). Your lesson progress and stars are kept.</p>
+<button type="button" class="go" id="r1">Reset my settings</button>
+<p><strong>Option 2:</strong> reset everything for LearnJA High School on this device, including progress and stars.</p>
+<button type="button" class="alt" id="r2">Reset everything</button>
+<div class="box" id="msg" role="status" aria-live="polite">Nothing has been changed yet.</div>
+<p style="margin-top:18px"><a class="btn go" href="index.html?fresh=1">Go to all lessons</a></p>
+</main>
+<script>
+function clear(all){var n=0;try{for(var i=localStorage.length-1;i>=0;i--){var k=localStorage.key(i);if(k==='jhs-prefs'||(all&&/^jhs-|^g7-lines-angles/.test(k))){localStorage.removeItem(k);n++}}}catch(e){}
+if('caches' in window){caches.keys().then(function(ks){ks.forEach(function(k){caches.delete(k)})})}
+document.getElementById('msg').textContent=all?'Done. Everything has been reset on this device ('+n+' saved items removed). Open your lesson again.':'Done. Your settings have been reset. Your progress is safe. Open your lesson again.'}
+document.getElementById('r1').onclick=function(){clear(false)};
+document.getElementById('r2').onclick=function(){if(confirm('This removes all progress and stars on this device. Continue?'))clear(true)};
+</script>
+</body>
+</html>

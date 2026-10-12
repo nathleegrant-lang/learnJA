@@ -6,18 +6,22 @@
 <title>Lesson template</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/lesson.css">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/lesson.css?v=20261012">
 </head>
 <body>
 <noscript>This lesson needs JavaScript turned on.</noscript>
-<script src="../assets/lesson-engine.js"></script>
+<div id="jhsLoading" style="font-family:system-ui,Arial,sans-serif;padding:24px;color:#2a2140">Loading lesson… If nothing appears after a few seconds, <a href="../index.html">go back to all lessons</a> and try again.</div>
+<script src="../assets/lesson-engine.js?v=20261012"></script>
 <script>
 /* =====================================================================
    HOW TO MAKE A NEW LESSON
    1. Copy this file. Name it like: g8-t2-maths-ratio.html
    2. Change id (must be unique), grade, term, title, goals and steps.
    3. Add a matching entry to catalog.js so it appears on the hub.
+
+   OBJECTIVES: goals (student-friendly "I can" statements) and curriculum (official
+   objectives) appear on their own page after the first (hook) page, under the 🎯 Objectives button and in teacher notes.
 
    STEP:  {phase:'engage'|'explore'|'explain'|'elaborate'|'evaluate',
            name:'short nav name', title:'page heading', lead:'intro sentence',
@@ -42,6 +46,15 @@
    problems  {type:'problems', need, levels:{bronze:[...],silver:[...],gold:[...]}, star}
              problem: {c:context, q:question, a:answer (number or text, or a list), tol,
                        h:[hint1,hint2], sol:'worked solution', wrong:'optional tip', svg}
+   TEACHING BLOCKS (use these so the lesson teaches first-time learners)
+   mcq refresher: add  teach:'short re-teaching'  to a question to show a refresher when it is answered wrongly
+   teach     {type:'teach', star, chunks:[{title, explain:'html', visual:'svg', example:{q, steps:[{do,why}]},
+                                          mistake:'html', check:{q,o,a,why,hint}}]}
+             one idea at a time; the next idea unlocks after the "Your turn" check
+   guided    {type:'guided', star, items:[{type:'worked',q,steps:[{do,why}]},
+                                         {type:'fill',q,steps:[{text:'... ___',blank:true,a,hint},{text}],sol},
+                                         {type:'own',q,a,hint,sol}]}      I do, we do, you do
+   key words write {{word|meaning}} inside text, explain or teach html to make a tappable definition
    custom    {type:'custom', html, init:function(box, api){...}, star}
              api: complete(), toast(msg), speak(text), nudges(rangeInput),
                   kit (drawing helpers), get(key), set(key,value)
@@ -57,6 +70,7 @@ window.LESSON={
  grade:7, term:1, subject:'Mathematics', strand:'Strand name',
  title:'Lesson title',
  goals:['first goal','second goal','third goal'],
+ curriculum:{framework:'NSC Mathematics, Grade 7',term:'Term 1',unit:'Unit name from the curriculum guide',strand:'Strand',standard:'Standard statement from the guide',objectives:['Specific objective copied from the guide'],focus:'What this lesson focuses on',note:'Source of the objectives'},
  glossary:[['Word','Meaning in simple language.']],
  teacher:{time:'about 60 minutes',curriculum:'Curriculum reference',flow:[['Engage','8 min','What students do','Teacher move']],misconceptions:['A common mistake'],extension:'An extension idea'},
  steps:[
