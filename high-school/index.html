@@ -6,7 +6,7 @@
 <title>Learning Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#2a2140;--muted:#5d5478;--bg:#f8f5fd;--paper:#fff;--line:#ddd4ee;--grape:#3d2a73;--grape2:#6a3fc0;--mango:#ffb02e;--fs:17px;--font:'Lexend',system-ui,'Segoe UI',Arial,sans-serif}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -22,18 +22,15 @@ button{font:inherit;cursor:pointer;border:1.5px solid #b3a6d6;border-radius:12px
 button:hover{background:#efe9fb}
 .top{background:var(--grape);color:#fff;padding:22px max(16px,calc((100vw - 1100px)/2)) 18px}
 .brand{display:flex;gap:14px;align-items:center}
-.logo{width:56px;height:56px;flex:none}
-.wordmark{font-family:'Baloo 2',var(--font);font-weight:800;font-size:2rem;letter-spacing:-.5px;line-height:1}
-.wordmark .ja{color:var(--mango)}
-.wordmark .hs{font-family:var(--font);font-weight:600;font-size:.95rem;letter-spacing:0;background:#ffffff26;border-radius:999px;padding:3px 12px;vertical-align:middle;margin-left:4px}
+.logo{width:54px;height:54px;flex:none}
 h1{margin:0;font-size:1.7rem;line-height:1.2}
 .top p{margin:2px 0 0;color:#d6cdf2}
-.toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:8px max(16px,calc((100vw - 1100px)/2));background:#ffb02e;border-bottom:1px solid #e8941a}
-.toolbar button{background:#3d2a73;color:#fff;border-color:#3d2a73;font-size:.85rem;padding:6px 11px;min-height:40px}
+.toolbar{display:flex;flex-wrap:wrap;gap:6px;padding:8px max(16px,calc((100vw - 1100px)/2));background:#2e1f5a}
+.toolbar button{background:#4a3590;color:#fff;border-color:#6650b0;font-size:.85rem;padding:6px 11px;min-height:40px}
 .toolbar button:hover{background:#5a42a8}
-.homelink{color:#fff;text-decoration:none;font-size:.85rem;border:1.5px solid #3d2a73;border-radius:12px;padding:6px 11px;background:#3d2a73;display:inline-flex;align-items:center;min-height:40px}
+.homelink{color:#fff;text-decoration:none;font-size:.85rem;border:1.5px solid #6650b0;border-radius:12px;padding:6px 11px;background:#4a3590;display:inline-flex;align-items:center;min-height:40px}
 .homelink:hover{background:#5a42a8}
-.toolbar button[aria-pressed=true]{background:#fff;color:#3d2a73;border-color:#3d2a73;box-shadow:inset 0 0 0 1px #3d2a73}
+.toolbar button[aria-pressed=true]{background:var(--mango);color:#2a2140;border-color:var(--mango)}
 main{max-width:1100px;margin:0 auto;padding:20px 16px 40px}
 h2{font-size:1.2rem;margin:26px 0 10px;display:flex;align-items:center;gap:10px}
 h2 .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--grape2);color:#fff;font-size:.9rem;flex:none}
@@ -66,19 +63,12 @@ h2 .n{display:inline-grid;place-items:center;width:30px;height:30px;border-radiu
 .empty{background:var(--paper);border:2px dashed var(--line);border-radius:16px;padding:22px;text-align:center;color:var(--muted)}
 footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 16px 30px}
 @media (max-width:760px){.grades{grid-template-columns:repeat(3,minmax(0,1fr))}h1{font-size:1.3rem}.term{min-width:0;flex:1}}
-
-.card{border-left-width:6px}
-.t-mint{background:#f1faf7;border-left-color:#16766a}.t-sky{background:#f2f6fd;border-left-color:#2f5fc4}
-.t-lilac{background:#f7f3fd;border-left-color:#6a3fc0}.t-peach{background:#fff8ec;border-left-color:#a85d00}
-.t-rose{background:#fdf2f5;border-left-color:#c02d5f}.t-grey{background:#f6f5f8;border-left-color:#5d5478}
-.card.planned{background-image:none;opacity:.92}
-body.hc .card{background:#fff}
 </style>
 </head>
 <body>
 <a class="skip" href="#hub">Skip to lessons</a>
-<header class="top"><div class="brand"><svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#ffb02e"/><path d="M14 23.5v8.5c0 4.2 20 4.2 20 0v-8.5l-10 4.6z" fill="#4b3aa8"/><polygon points="24,11 42,19.5 24,28 6,19.5" fill="#3d2a73"/><circle cx="24" cy="19.5" r="1.8" fill="#ffb02e"/><path d="M24 19.5 L39 22.5 V31" stroke="#c23b48" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="39" cy="32.5" r="2.4" fill="#c23b48"/></svg><div><h1 id="siteName" class="wordmark"><span class="sr">LearnJA High School</span><span aria-hidden="true">Learn<span class="ja">JA</span> <span class="hs">High School</span></span></h1><p id="siteTag"></p></div></div></header>
-<div class="toolbar" role="toolbar" aria-label="Display settings"><a href="../index.html" class="homelink">← LearnJA home</a><a href="curriculum-map.html" class="homelink">📋 Curriculum map</a><button type="button" id="tSmaller" aria-label="Make text smaller">A−</button><button type="button" id="tBigger" aria-label="Make text bigger">A+</button><button type="button" id="tFont" aria-pressed="false">Easy-read font</button><button type="button" id="tContrast" aria-pressed="false">High contrast</button></div>
+<header class="top"><div class="brand"><svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#ffb02e"/><path d="M10 38 H40 M10 38 L32 12" stroke="#3d2a73" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M22 38 A12 12 0 0 0 18.5 29" stroke="#c23b48" stroke-width="3.5" fill="none"/></svg><div><h1 id="siteName"></h1><p id="siteTag"></p></div></div></header>
+<div class="toolbar" role="toolbar" aria-label="Display settings"><a href="../index.html" class="homelink">← LearnJA home</a><button type="button" id="tSmaller" aria-label="Make text smaller">A−</button><button type="button" id="tBigger" aria-label="Make text bigger">A+</button><button type="button" id="tFont" aria-pressed="false">Easy-read font</button><button type="button" id="tContrast" aria-pressed="false">High contrast</button></div>
 <main id="hub">
  <div id="continueBox"></div>
  <h2><span class="n" aria-hidden="true">1</span> Choose your grade</h2>
@@ -100,7 +90,7 @@ var $=function(id){return document.getElementById(id)};
 function rd(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
 function wr(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-document.title=S.name;$('siteTag').textContent=S.tagline;
+document.title=S.name;$('siteName').textContent=S.name;$('siteTag').textContent=S.tagline;
 
 var prefs=rd('jhs-prefs',{fs:17});
 function applyPrefs(){document.documentElement.style.setProperty('--fs',(prefs.fs||17)+'px');document.body.classList.toggle('easy',!!prefs.easy);document.body.classList.toggle('hc',!!prefs.hc);$('tFont').setAttribute('aria-pressed',String(!!prefs.easy));$('tContrast').setAttribute('aria-pressed',String(!!prefs.hc))}
@@ -120,10 +110,9 @@ function count(f){return LS.filter(function(l){return l.status==='ready'&&f(l)})
 function grades(){var g=$('grades');g.innerHTML='';S.grades.forEach(function(x){var b=document.createElement('button');b.type='button';b.className='grade';b.setAttribute('aria-pressed',String(sel.grade===x.n));var c=count(function(l){return l.grade===x.n});b.innerHTML='<span class="big">Grade '+x.n+'</span><span class="lvl '+x.level+'">'+x.level+'</span><small>'+esc(x.note)+'</small><small>'+c+' lesson'+(c===1?'':'s')+' ready</small>';b.onclick=function(){sel.grade=x.n;saveSel();render()};g.appendChild(b)})}
 function subjects(){var s=$('subjects');s.innerHTML='';S.subjects.forEach(function(x){if(x.ready){var b=document.createElement('button');b.type='button';b.className='subj';b.setAttribute('aria-pressed',String(sel.subject===x.id));b.textContent=x.name;b.onclick=function(){sel.subject=x.id;saveSel();render()};s.appendChild(b)}else{var t=document.createElement('span');t.className='soon';t.textContent=x.name+' (coming soon)';s.appendChild(t)}})}
 function terms(){var t=$('terms');t.innerHTML='';S.terms.forEach(function(x){var b=document.createElement('button');b.type='button';b.className='term';b.setAttribute('aria-pressed',String(sel.term===x.n));var c=count(function(l){return l.grade===sel.grade&&l.subject===sel.subject&&l.term===x.n});b.innerHTML='<strong>'+esc(x.name)+'</strong><small>'+esc(x.when)+' | '+c+' ready</small>';b.onclick=function(){sel.term=x.n;saveSel();render()};t.appendChild(b)})}
-function tint(st){st=(st||'').toLowerCase();return /geometry|trig/.test(st)?'t-sky':/algebra|relation|graph|vector|matri/.test(st)?'t-lilac':/measure/.test(st)?'t-peach':/statistic|probab/.test(st)?'t-rose':/revision|school-based/.test(st)?'t-grey':'t-mint'}
-function card(l,showWhere){var c=document.createElement('article'),p=progress(l),subj=(S.subjects.filter(function(s){return s.id===l.subject})[0]||{}).name||l.subject;c.className='card '+tint(l.strand)+(l.status==='ready'?'':' planned');var where='Grade '+l.grade+' | Term '+l.term+' | '+subj;var h='<span class="meta">'+(showWhere?esc(where)+' | ':'')+esc(l.strand||'')+(l.unit?' | '+esc(l.unit):'')+(l.minutes?' | about '+l.minutes+' min':'')+'</span><h3>'+esc(l.title)+'</h3>';if(l.status==='ready'){var pct=p.t?Math.round(100*p.n/p.t):0;h+='<div class="bar" aria-hidden="true"><i style="width:'+pct+'%"></i></div><span class="meta">'+(p.started?'⭐ '+p.n+' of '+p.t+' stars':'Not started yet')+'</span><div class="foot"><span class="tag">'+(p.t&&p.n>=p.t?'Complete':p.started?'In progress':'New')+'</span><a class="go" href="'+esc(l.file)+'">'+(p.t&&p.n>=p.t?'Review lesson':p.started?'Continue':'Start lesson')+'<span class="sr">: '+esc(l.title)+'</span></a></div>'}else h+='<div class="foot"><span class="tag">Coming soon</span></div>';c.innerHTML=h;return c}
+function card(l,showWhere){var c=document.createElement('article'),p=progress(l),subj=(S.subjects.filter(function(s){return s.id===l.subject})[0]||{}).name||l.subject;c.className='card'+(l.status==='ready'?'':' planned');var where='Grade '+l.grade+' | Term '+l.term+' | '+subj;var h='<span class="meta">'+(showWhere?esc(where)+' | ':'')+esc(l.strand||'')+(l.minutes?' | about '+l.minutes+' min':'')+'</span><h3>'+esc(l.title)+'</h3>';if(l.status==='ready'){var pct=p.t?Math.round(100*p.n/p.t):0;h+='<div class="bar" aria-hidden="true"><i style="width:'+pct+'%"></i></div><span class="meta">'+(p.started?'⭐ '+p.n+' of '+p.t+' stars':'Not started yet')+'</span><div class="foot"><span class="tag">'+(p.t&&p.n>=p.t?'Complete':p.started?'In progress':'New')+'</span><a class="go" href="'+esc(l.file)+'">'+(p.t&&p.n>=p.t?'Review lesson':p.started?'Continue':'Start lesson')+'<span class="sr">: '+esc(l.title)+'</span></a></div>'}else h+='<div class="foot"><span class="tag">Coming soon</span></div>';c.innerHTML=h;return c}
 function list(){var L=$('list'),q=$('q').value.trim().toLowerCase();L.innerHTML='';var items,label;if(q){items=LS.filter(function(l){return(l.title+' '+(l.strand||'')+' grade '+l.grade).toLowerCase().indexOf(q)>=0});label='Search results for "'+$('q').value.trim()+'"'}else{items=LS.filter(function(l){return l.grade===sel.grade&&l.subject===sel.subject&&l.term===sel.term});var subj=(S.subjects.filter(function(s){return s.id===sel.subject})[0]||{}).name;label='Grade '+sel.grade+' '+subj+', Term '+sel.term}$('listLabel').textContent=label;items.sort(function(a,b){return(a.status==='ready'?0:1)-(b.status==='ready'?0:1)});items.forEach(function(l){L.appendChild(card(l,!!q))});if(!items.length)L.innerHTML='<div class="empty">'+(q?'No lessons match that search. Try a shorter word.':'Lessons for this term are on the way. Try another term, or check back soon.')+'</div>'}
-function cont(){var last=rd('jhs-last',null),box=$('continueBox');box.innerHTML='';if(!last)return;var l=LS.filter(function(x){return x.id===last.id||(x.file||'').split('/').pop()===last.file})[0];if(!l||l.status!=='ready')return;var p=progress(l);if(p.t&&p.n>=p.t)return;box.innerHTML='<div class="continue"><p><strong>Pick up where you left off:</strong> '+esc(l.title)+' (Grade '+l.grade+')</p><a class="go" href="'+esc(l.file)+'">Continue lesson</a></div>'}
+function cont(){var last=rd('jhs-last',null),box=$('continueBox');box.innerHTML='';if(!last)return;var l=LS.filter(function(x){return x.id===last.id||x.file.split('/').pop()===last.file})[0];if(!l||l.status!=='ready')return;var p=progress(l);if(p.t&&p.n>=p.t)return;box.innerHTML='<div class="continue"><p><strong>Pick up where you left off:</strong> '+esc(l.title)+' (Grade '+l.grade+')</p><a class="go" href="'+esc(l.file)+'">Continue lesson</a></div>'}
 $('q').oninput=list;
 function render(){grades();subjects();terms();list()}
 cont();render();
