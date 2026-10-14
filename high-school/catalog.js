@@ -31,7 +31,7 @@ window.SITE={
    Grade split follows Herbert Morrison Technical High School's Grade 10 and 11 Mathematics curriculum guides;
    term order is a suggested sequence. Schools vary, so adjust terms here. */
 window.LESSONS=[
- {id:'g7-t1-maths-integers',grade:7,term:1,subject:'maths',unit:'Unit 1: Operations on Real Numbers',strand:'Number',title:'Integers: Above and Below Zero',file:'lessons/g7-t1-integers.html',minutes:60,status:'ready'},
+ {id:'g7-t1-maths-integers',grade:7,term:1,subject:'maths',unit:'Unit 1: Operations on Real Numbers',strand:'Number',title:'Integers: Above and Below Zero',file:'lessons/g7-t1-integers.html',minutes:80,status:'ready'},
  {id:'g7-t1-maths-lines-angles',grade:7,term:1,subject:'maths',unit:'Builds toward Grade 8, Term 1, Unit 4',strand:'Geometry',title:'Lines and Angles',file:'lessons/g7-t1-lines-angles.html',minutes:70,status:'ready',progressKey:'g7-lines-angles-lab-v2',total:15},
  {id:'g7-t1-maths-unit1-realnumbers',grade:7,term:1,subject:'maths',unit:'Unit 1: Operations on Real Numbers',strand:'Number',title:'Real Numbers: Classifying, Rounding and Divisibility',status:'planned'},
  {id:'g7-t1-maths-unit2',grade:7,term:1,subject:'maths',unit:'Unit 2: Measuring Concepts',strand:'Measurement',title:'Measuring Concepts: Perimeter and Area of Composite Figures',status:'planned'},
