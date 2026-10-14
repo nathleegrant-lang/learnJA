@@ -227,3 +227,32 @@ body.noteacher .tcard .tav{display:inline-block}
 .settoggles button[aria-pressed=true]{background:#efe8fb;border-color:#6a3fc0;font-weight:600}
 .settoggles button[aria-pressed=true]::before{content:'● '}
 @media (max-width:700px){.tgroup{border-left:none;padding-left:0;margin-left:0}.tright{margin-left:0}.toolbar button,.backlink{font-size:.8rem;padding:6px 9px}}
+
+.tav-xs{width:28px;height:28px}
+.toolbar .tpickbtn{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#3d2a73;border-color:#3d2a73;font-weight:600;padding:4px 12px 4px 6px}
+.toolbar .tpickbtn:hover{background:#efe8fb}
+.linkbtn{background:none;border:none;padding:0;min-height:0;margin-top:6px;color:#4b2a9a;font-weight:600;text-decoration:underline;cursor:pointer}
+.linkbtn:hover{background:none;color:#3d2a73}
+body.noteacher .toolbar .tpickbtn{padding-left:12px}
+
+/* challenge zone */
+.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:10px}
+.btile{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:14px;border-radius:16px;border:2px solid #ddd0f3;background:#fff;min-height:150px}
+.btile:hover{border-color:#6a3fc0;background:#faf7ff;transform:translateY(-2px)}
+.btile .bicon{font-size:1.7rem}
+.btile span{font-size:.88rem;color:var(--muted)}
+.btile .blevel{margin-top:auto;font-weight:600;color:#4b2a9a}
+.btile.bdone{background:#e9f6f2;border-color:#16766a}
+.btile:nth-child(4n+1){border-top:6px solid #16766a}.btile:nth-child(4n+2){border-top:6px solid #2f5fc4}.btile:nth-child(4n+3){border-top:6px solid #a85d00}.btile:nth-child(4n+4){border-top:6px solid #6a3fc0}
+.bprog{height:10px;border-radius:9px;background:#e8e2f5;overflow:hidden;max-width:420px}.bprog span{display:block;height:100%;background:linear-gradient(90deg,#16766a,#6a3fc0)}
+.bcount{font-weight:600;color:#3d2a73}
+.bpanel{border:2px solid #d8ccf6;border-radius:16px;padding:14px 18px;background:#fff}
+.bback{margin:4px 0 8px}
+.spotlines{padding-left:22px}.spotlines li{margin:6px 0}
+.spotline{text-align:left;width:100%;font-family:inherit}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.mcol{display:flex;flex-direction:column;gap:8px}
+.mcard{font-size:1.1rem;font-weight:600}.mcard[aria-pressed=true]{border-color:#6a3fc0;background:#efe8fb;box-shadow:0 0 0 3px #d8ccf6}
+.mstat{font-weight:600;color:#3d2a73}
+.mstory{background:#f7f3ff;border-radius:14px;padding:10px 14px;margin-bottom:8px}
+.mpart[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){.btile:hover{transform:none}}

@@ -73,14 +73,29 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 16px 30px
 .t-rose{background:#fdf2f5;border-left-color:#c02d5f}.t-grey{background:#f6f5f8;border-left-color:#5d5478}
 .card.planned{background-image:none;opacity:.92}
 body.hc .card{background:#fff}
+
+.tav{display:inline-block;flex:none;width:76px;height:76px}.tav svg{width:100%;height:100%;display:block}.tav-xs{width:28px;height:28px}.tav-lg{width:96px;height:96px}
+.toolbar .tpickbtn{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#3d2a73;border-color:#3d2a73;font-weight:600;padding:4px 12px 4px 6px}
+.meet{display:flex;gap:16px;align-items:center;background:#fff;border:2px solid #d8ccf6;border-radius:16px;padding:14px 18px;margin-top:14px}
+.meet .go{border:none;cursor:pointer;font:inherit;font-weight:600}
+dialog{max-width:640px;width:calc(100% - 24px);border:none;border-radius:16px;padding:0;font-family:var(--font);color:var(--ink)}dialog::backdrop{background:#2e1f5a99}
+.dhead{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:#3d2a73;color:#fff}.dhead h2{margin:0;font-size:1.15rem;color:#fff}
+.dbody{padding:16px 18px}
+.tpick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tcard{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:12px;border-radius:14px}
+.tcard[aria-pressed=true]{border-color:#6a3fc0;background:#efe8fb;box-shadow:0 0 0 3px #d8ccf6}
+.tcard span:last-child{font-size:.85rem;color:var(--muted)}
+.tshow{display:flex;gap:8px;align-items:center;margin:12px 0 0;font-weight:600}.tnote{font-size:.85rem;color:var(--muted)}
+@media (max-width:600px){.meet{flex-direction:column;text-align:center}}
 </style>
 </head>
 <body>
 <a class="skip" href="#hub">Skip to lessons</a>
 <header class="top"><div class="brand"><svg class="logo" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#ffb02e"/><path d="M14 23.5v8.5c0 4.2 20 4.2 20 0v-8.5l-10 4.6z" fill="#4b3aa8"/><polygon points="24,11 42,19.5 24,28 6,19.5" fill="#3d2a73"/><circle cx="24" cy="19.5" r="1.8" fill="#ffb02e"/><path d="M24 19.5 L39 22.5 V31" stroke="#c23b48" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="39" cy="32.5" r="2.4" fill="#c23b48"/></svg><div><h1 id="siteName" class="wordmark"><span class="sr">LearnJA High School</span><span aria-hidden="true">Learn<span class="ja">JA</span> <span class="hs">High School</span></span></h1><p id="siteTag"></p></div></div></header>
-<div class="toolbar" role="toolbar" aria-label="Display settings"><a href="../index.html" class="homelink">← LearnJA home</a><a href="curriculum-map.html" class="homelink">📋 Curriculum map</a><button type="button" id="tSmaller" aria-label="Make text smaller">A−</button><button type="button" id="tBigger" aria-label="Make text bigger">A+</button><button type="button" id="tFont" aria-pressed="false">Easy-read font</button><button type="button" id="tContrast" aria-pressed="false">High contrast</button></div>
+<div class="toolbar" role="toolbar" aria-label="Display settings"><a href="../index.html" class="homelink">← LearnJA home</a><a href="curriculum-map.html" class="homelink">📋 Curriculum map</a><button type="button" class="tchoose tpickbtn"><span class="tav tav-xs" data-expr="pleased"></span><span>Choose your teacher</span></button><button type="button" id="tSmaller" aria-label="Make text smaller">A−</button><button type="button" id="tBigger" aria-label="Make text bigger">A+</button><button type="button" id="tFont" aria-pressed="false">Easy-read font</button><button type="button" id="tContrast" aria-pressed="false">High contrast</button></div>
 <main id="hub">
  <div id="continueBox"></div>
+ <section class="meet" aria-labelledby="meetT"><span class="tav tav-lg" data-expr="explain" id="meetAv"></span><div><h2 id="meetT" style="margin:0 0 4px">Your teacher: <span class="tname"></span></h2><p style="margin:0 0 8px">Your teacher explains each new idea, works through examples with you, and warns you about common mistakes. You can choose Ms. Reid or Mr. Campbell, and change any time.</p><button type="button" class="tchoose go">Choose your teacher</button></div></section>
  <h2><span class="n" aria-hidden="true">1</span> Choose your grade</h2>
  <div class="grades" id="grades" role="group" aria-label="Grade"></div>
  <h2><span class="n" aria-hidden="true">2</span> Choose your subject</h2>
@@ -92,6 +107,8 @@ body.hc .card{background:#fff}
  <div class="list" id="list" aria-live="polite"></div>
 </main>
 <footer>LearnJA High School | A Shazonique's Inspiration product<br>Progress and settings are saved in this browser only. Lesson not opening? <a href="reset.html">Fix my lessons</a>.</footer>
+<dialog id="tdlg" aria-labelledby="tdT"><div class="dhead"><h2 id="tdT">Choose your teacher</h2><button type="button" id="tdClose">Done</button></div><div class="dbody"><div class="tpick" id="tpick"></div><label class="tshow"><input type="checkbox" id="tShow"> Show the teacher in lessons</label><p class="tnote">Voice and reading speed are in ⚙️ My settings inside any lesson.</p></div></dialog>
+<script src="assets/lesson-engine.js?v=20261012"></script>
 <script src="catalog.js"></script>
 <script>
 (function(){
@@ -127,6 +144,10 @@ function cont(){var last=rd('jhs-last',null),box=$('continueBox');box.innerHTML=
 $('q').oninput=list;
 function render(){grades();subjects();terms();list()}
 cont();render();
+var K=window.LessonKit;if(K&&K.teacherSVG){if(!prefs.teacher)prefs.teacher='reid';if(prefs.showTeacher===undefined)prefs.showTeacher=true;
+function tpaint(){[].forEach.call(document.querySelectorAll('.tav'),function(e){if(!e.closest('.tcard'))e.innerHTML=K.teacherSVG(prefs.teacher,e.getAttribute('data-expr')||'explain')});[].forEach.call(document.querySelectorAll('.tname'),function(e){e.textContent=K.TEACHERS[prefs.teacher].name})}
+function tbuild(){var p=$('tpick');p.innerHTML='';Object.keys(K.TEACHERS).forEach(function(id){var T=K.TEACHERS[id],b=document.createElement('button');b.type='button';b.className='tcard';b.setAttribute('aria-pressed',String(prefs.teacher===id));b.innerHTML='<span class="tav tav-lg">'+K.teacherSVG(id,'explain')+'</span><strong>'+T.name+'</strong><span>'+T.intro+'</span>';b.onclick=function(){prefs.teacher=id;wr('jhs-prefs',prefs);[].forEach.call(p.children,function(x){x.setAttribute('aria-pressed',String(x===b))});tpaint()};p.appendChild(b)});$('tShow').checked=!!prefs.showTeacher;$('tShow').onchange=function(){prefs.showTeacher=this.checked;wr('jhs-prefs',prefs)}}
+document.addEventListener('click',function(ev){if(ev.target.closest('.tchoose')){tbuild();$('tdlg').showModal()}});$('tdClose').onclick=function(){$('tdlg').close()};tpaint()}else{[].forEach.call(document.querySelectorAll('.tchoose,.meet'),function(e){e.hidden=true})}
 })();
 </script>
 </body>

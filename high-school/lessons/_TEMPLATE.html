@@ -54,6 +54,15 @@
    guided    {type:'guided', star, items:[{type:'worked',q,steps:[{do,why}]},
                                          {type:'fill',q,steps:[{text:'... ___',blank:true,a,hint},{text}],sol},
                                          {type:'own',q,a,hint,sol}]}      I do, we do, you do
+   CHALLENGE ZONE (Elaborate): board holds several activities; students choose; star after 'need' completed
+   board     {type:'board', star, need:4, activities:[{icon, title, desc, level, mins, block:{...any block...}}]}
+   order     {type:'order', prompt, rounds:[[{label, v:value, show:'decimal shown'}]]}
+   asn       {type:'asn', statements:[{s, a:'always'|'sometimes'|'never', why, hint}]}   always/sometimes/never
+   spot      {type:'spot', problems:[{who, q, lines:[...], wrong:lineIndex, reasons:[...], reason:index, fix}]}
+   match     {type:'match', pairs:[[left,right],...]}
+   sprint    {type:'sprint', seconds:60, target:8, gen:function(){return {q, o:[...], a:index, why}}}   with practice mode
+   create    {type:'create', tasks:[{q, placeholder, check:function(text, parseNum){return {ok, msg}}}]}
+   mission   {type:'mission', story, svg, parts:[{q, a, tol, hint, sol}], done}
    key words write {{word|meaning}} inside text, explain or teach html to make a tappable definition
    custom    {type:'custom', html, init:function(box, api){...}, star}
              api: complete(), toast(msg), speak(text), nudges(rangeInput),
