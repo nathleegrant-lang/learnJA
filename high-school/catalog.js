@@ -110,5 +110,5 @@ window.LESSONS=[
  {id:'g11-t2-maths-csec-37',grade:11,term:2,subject:'maths',unit:'CSEC Module 3',strand:'Relations, Functions and Graphs',title:'Linear Inequalities and Linear Programming',so:'M3 2.1–2.3',file:'lessons/g11-t2-linear-programming.html',minutes:100,status:'ready'},
  {id:'g11-t2-maths-csec-38',grade:11,term:2,subject:'maths',unit:'CSEC All modules',strand:'School-Based Assessment',title:'SBA Project Workshop',so:'SBA guidelines',file:'lessons/g11-t2-sba-workshop.html',minutes:100,status:'ready'},
  {id:'g11-t3-maths-csec-39',grade:11,term:3,subject:'maths',unit:'CSEC All modules',strand:'Revision',title:'Paper 1 Practice by Module',so:'All modules',file:'lessons/g11-t3-paper1-practice.html',minutes:100,status:'ready'},
- {id:'g11-t3-maths-csec-40',grade:11,term:3,subject:'maths',unit:'CSEC All modules',strand:'Revision',title:'Paper 2 Practice and Exam Strategy',so:'All modules',file:'lessons/g11-t3-paper2-practice.html',minutes:100,status:'ready'}
+ {id:'g11-t3-maths-csec-40',grade:11,term:3,subject:'maths',unit:'CSEC All modules',strand:'Revision',title:'Paper 2 Practice by Module',so:'All modules',file:'lessons/g11-t3-paper2-practice.html',minutes:100,status:'ready'}
 ];

@@ -7,12 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/lesson.css?v=20261014b">
+<link rel="stylesheet" href="../assets/lesson.css?v=20261026a">
 </head>
 <body>
 <noscript>This lesson needs JavaScript turned on.</noscript>
 <div id="jhsLoading" style="font-family:system-ui,Arial,sans-serif;padding:24px;color:#2a2140">Loading lesson… If nothing appears after a few seconds, <a href="../index.html">go back to all lessons</a> and try again.</div>
-<script src="../assets/lesson-engine.js?v=20261014b"></script>
+<script src="../assets/lesson-engine.js?v=20261026a"></script>
 <script>
 var K=window.LessonKit;
 var VENN=function(o){o=o||{};var la=o.A||'A',lb=o.B||'B',t=function(x,y,v,anc){if(v==null)return'';var lines=[].concat(v),s='';lines.forEach(function(l,i){s+='<text x="'+x+'" y="'+(y+i*20-(lines.length-1)*10)+'" text-anchor="'+(anc||'middle')+'" font-size="'+(o.small?14:17)+'" font-weight="700" fill="#2a2140">'+l+'</text>'});return s};return'<svg viewBox="0 0 600 330" role="img" aria-label="'+(o.label||'A Venn diagram of two sets inside a universal set')+'"><rect width="600" height="330" fill="#faf8fe"/><rect x="15" y="15" width="570" height="300" rx="12" fill="#fff" stroke="#3d2a73" stroke-width="2"/><text x="30" y="40" font-size="17" font-weight="700" fill="#3d2a73">U'+(o.U?' = '+o.U:'')+'</text><circle cx="235" cy="170" r="125" fill="'+(o.hiA?'#ffd98a':'#e4ecfb')+'" fill-opacity=".7" stroke="#2f5fc4" stroke-width="2.5"/><circle cx="365" cy="170" r="125" fill="'+(o.hiB?'#ffd98a':'#dcf3ee')+'" fill-opacity=".7" stroke="#16766a" stroke-width="2.5"/>'+(o.hiAB?'<path d="M300 61.6 A125 125 0 0 1 300 278.4 A125 125 0 0 1 300 61.6Z" fill="#ffb02e" fill-opacity=".8"/>':'')+'<text x="140" y="60" font-size="18" font-weight="700" fill="#2f5fc4">'+la+'</text><text x="450" y="60" font-size="18" font-weight="700" fill="#16766a">'+lb+'</text>'+t(170,175,o.a)+t(300,175,o.ab)+t(430,175,o.b)+t(32,300,o.n,String(o.n).length>4?'start':null)+'</svg>'};

@@ -7,12 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/lesson.css?v=20261014b">
+<link rel="stylesheet" href="../assets/lesson.css?v=20261026a">
 </head>
 <body>
 <noscript>This lesson needs JavaScript turned on.</noscript>
 <div id="jhsLoading" style="font-family:system-ui,Arial,sans-serif;padding:24px;color:#2a2140">Loading lesson… If nothing appears after a few seconds, <a href="../index.html">go back to all lessons</a> and try again.</div>
-<script src="../assets/lesson-engine.js?v=20261014b"></script>
+<script src="../assets/lesson-engine.js?v=20261026a"></script>
 <script>
 var K=window.LessonKit;
 var AREA=function(o){var W=520,H=230,X0=40,Y0=30,u=26,s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+(o.label||'An area model for expanding brackets')+'"><rect width="'+W+'" height="'+H+'" fill="#faf8fe"/>';var cols=o.cols,rows=o.rows,x=X0,colW=cols.map(function(c){return c[1]*u}),rowH=rows.map(function(r){return r[1]*u});var cx=X0;cols.forEach(function(c,i){var cy=Y0;rows.forEach(function(r,j){var fill=(c[0].indexOf('x')>=0&&r[0].indexOf('x')>=0)?'#d9cff5':(c[0].indexOf('x')>=0||r[0].indexOf('x')>=0)?'#ffd98a':'#dcf3ee';s+='<rect x="'+cx+'" y="'+cy+'" width="'+colW[i]+'" height="'+rowH[j]+'" fill="'+fill+'" stroke="#3d2a73" stroke-width="2"/>';var lab=o.cells?o.cells[j][i]:'';s+='<text x="'+(cx+colW[i]/2)+'" y="'+(cy+rowH[j]/2+6)+'" text-anchor="middle" font-size="17" font-weight="700" fill="#2a2140">'+lab+'</text>';cy+=rowH[j]});s+='<text x="'+(cx+colW[i]/2)+'" y="'+(Y0-8)+'" text-anchor="middle" font-size="16" font-weight="700" fill="#2f5fc4">'+c[0]+'</text>';cx+=colW[i]});var cy2=Y0;rows.forEach(function(r,j){s+='<text x="'+(X0-8)+'" y="'+(cy2+rowH[j]/2+6)+'" text-anchor="end" font-size="16" font-weight="700" fill="#c02d5f">'+r[0]+'</text>';cy2+=rowH[j]});return s+'</svg>'};

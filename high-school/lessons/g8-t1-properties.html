@@ -7,12 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/lesson.css?v=20261014b">
+<link rel="stylesheet" href="../assets/lesson.css?v=20261026a">
 </head>
 <body>
 <noscript>This lesson needs JavaScript turned on.</noscript>
 <div id="jhsLoading" style="font-family:system-ui,Arial,sans-serif;padding:24px;color:#2a2140">Loading lesson… If nothing appears after a few seconds, <a href="../index.html">go back to all lessons</a> and try again.</div>
-<script src="../assets/lesson-engine.js?v=20261014b"></script>
+<script src="../assets/lesson-engine.js?v=20261026a"></script>
 <script>
 var K=window.LessonKit;
 var REL=function(kind){var s='<svg viewBox="0 0 560 170" role="img" aria-label="'+({ref:'Each person has an arrow to themselves',sym:'Arrows go both ways between two people',tra:'Arrows from A to B and B to C, so also from A to C'}[kind])+'"><defs><marker id="ah'+kind+'" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10Z" fill="#6a3fc0"/></marker></defs><rect width="560" height="170" fill="#faf8fe"/>',P=[[110,110,'A'],[280,50,'B'],[450,110,'C']];P.forEach(function(p){s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="24" fill="#ffd98a" stroke="#a85d00" stroke-width="2"/><text x="'+p[0]+'" y="'+(p[1]+6)+'" text-anchor="middle" font-size="18" font-weight="700" fill="#3d2a73">'+p[2]+'</text>'});var ar=function(d){return'<path d="'+d+'" fill="none" stroke="#6a3fc0" stroke-width="2.5" marker-end="url(#ah'+kind+')"/>'};if(kind==='ref')P.forEach(function(p){s+=ar('M'+(p[0]-14)+' '+(p[1]+20)+' C'+(p[0]-40)+' '+(p[1]+60)+' '+(p[0]+40)+' '+(p[1]+60)+' '+(p[0]+16)+' '+(p[1]+22))});if(kind==='sym'){s+=ar('M135 100 Q195 60 255 58')+ar('M258 70 Q200 100 136 112')}if(kind==='tra'){s+=ar('M132 98 L254 58')+ar('M304 58 L426 98')+'<path d="M136 118 L422 118" fill="none" stroke="#c02d5f" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#ahtra)"/><text x="280" y="145" text-anchor="middle" font-size="14" fill="#c02d5f">so A → C</text>'}return s+'</svg>'};

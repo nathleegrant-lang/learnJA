@@ -7,12 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/lesson.css?v=20261014b">
+<link rel="stylesheet" href="../assets/lesson.css?v=20261026a">
 </head>
 <body>
 <noscript>This lesson needs JavaScript turned on.</noscript>
 <div id="jhsLoading" style="font-family:system-ui,Arial,sans-serif;padding:24px;color:#2a2140">Loading lesson… If nothing appears after a few seconds, <a href="../index.html">go back to all lessons</a> and try again.</div>
-<script src="../assets/lesson-engine.js?v=20261014b"></script>
+<script src="../assets/lesson-engine.js?v=20261026a"></script>
 <script>
 var K=window.LessonKit;
 var BARS=function(p,step){var s='<svg viewBox="0 0 620 '+(step?210:150)+'" role="img" aria-label="Bar model of the two shopping lists"><rect width="620" height="'+(step?210:150)+'" fill="#faf8fe"/>',u=70,row=function(y,a,b,total,lab){var x=120,str='<text x="10" y="'+(y+28)+'" font-size="14" font-weight="700" fill="#3d2a73">'+lab+'</text>';for(var i=0;i<a;i++){str+='<rect x="'+x+'" y="'+y+'" width="'+(u-4)+'" height="40" rx="8" fill="#ffb02e"/><text x="'+(x+(u-4)/2)+'" y="'+(y+26)+'" text-anchor="middle" font-size="13" font-weight="700" fill="#3d2400">'+p.n1+'</text>';x+=u}for(i=0;i<b;i++){str+='<rect x="'+x+'" y="'+y+'" width="'+(u-4)+'" height="40" rx="8" fill="#16766a"/><text x="'+(x+(u-4)/2)+'" y="'+(y+26)+'" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">'+p.n2+'</text>';x+=u}return str+'<text x="'+(x+8)+'" y="'+(y+27)+'" font-size="16" font-weight="700" fill="#3d2a73">= $'+total+'</text>'};s+=row(20,p.a1,p.b1,p.t1,'List 1')+row(80,p.a2,p.b2,p.t2,'List 2');if(step)s+=row(150,p.a1-p.a2,p.b1-p.b2,p.t1-p.t2,'1 − 2');return s+'</svg>'};

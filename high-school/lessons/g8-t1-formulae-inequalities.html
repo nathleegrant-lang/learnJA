@@ -7,12 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/lesson.css?v=20261014b">
+<link rel="stylesheet" href="../assets/lesson.css?v=20261026a">
 </head>
 <body>
 <noscript>This lesson needs JavaScript turned on.</noscript>
 <div id="jhsLoading" style="font-family:system-ui,Arial,sans-serif;padding:24px;color:#2a2140">Loading lesson… If nothing appears after a few seconds, <a href="../index.html">go back to all lessons</a> and try again.</div>
-<script src="../assets/lesson-engine.js?v=20261014b"></script>
+<script src="../assets/lesson-engine.js?v=20261026a"></script>
 <script>
 var K=window.LessonKit;
 var INEQ=function(sym,v,lbl){var X=function(x){return 40+(x+6)*45},s='<svg viewBox="0 0 620 110" role="img" aria-label="'+(lbl||('Number line showing x '+sym+' '+v))+'"><rect width="620" height="110" fill="#faf8fe"/><line x1="20" y1="50" x2="600" y2="50" stroke="#3d2a73" stroke-width="2"/>';for(var i=-6;i<=6;i++)s+='<line x1="'+X(i)+'" y1="44" x2="'+X(i)+'" y2="56" stroke="#3d2a73" stroke-width="2"/><text x="'+X(i)+'" y="78" text-anchor="middle" font-size="14" fill="#3d2a73">'+(i<0?'−'+(-i):i)+'</text>';var right=sym==='>'||sym==='≥',closed=sym==='≤'||sym==='≥',end=right?600:20;s+='<line x1="'+X(v)+'" y1="50" x2="'+end+'" y2="50" stroke="#c02d5f" stroke-width="6"/><path d="'+(right?'M600 50 l-12 -8 v16z':'M20 50 l12 -8 v16z')+'" fill="#c02d5f"/><circle cx="'+X(v)+'" cy="50" r="9" fill="'+(closed?'#c02d5f':'#fff')+'" stroke="#c02d5f" stroke-width="3"/>';return s+'<text x="20" y="102" font-size="13" fill="#5d5478">'+(closed?'Filled circle: '+v+' IS included.':'Open circle: '+v+' is NOT included.')+'</text></svg>'};

@@ -7,12 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Lexend:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/lesson.css?v=20261014b">
+<link rel="stylesheet" href="../assets/lesson.css?v=20261026a">
 </head>
 <body>
 <noscript>This lesson needs JavaScript turned on.</noscript>
 <div id="jhsLoading" style="font-family:system-ui,Arial,sans-serif;padding:24px;color:#2a2140">Loading lesson… If nothing appears after a few seconds, <a href="../index.html">go back to all lessons</a> and try again.</div>
-<script src="../assets/lesson-engine.js?v=20261014b"></script>
+<script src="../assets/lesson-engine.js?v=20261026a"></script>
 <script>
 var K=window.LessonKit;
 var STICKS=function(n){var s=34,W=40+n*s+40,str='<svg viewBox="0 0 '+Math.max(W,420)+' 120" role="img" aria-label="'+n+' squares in a row made from matchsticks"><rect width="'+Math.max(W,420)+'" height="120" fill="#faf8fe"/>';var st=function(x1,y1,x2,y2){return'<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#a85d00" stroke-width="5" stroke-linecap="round"/><circle cx="'+x2+'" cy="'+y2+'" r="3.5" fill="#c02d5f"/>'};for(var i=0;i<n;i++){var x=40+i*s;str+=st(x,30,x+s,30)+st(x,64,x+s,64);if(i===0)str+=st(x,30,x,64);str+=st(x+s,30,x+s,64)}return str+'<text x="40" y="100" font-size="15" fill="#3d2a73">'+n+' square'+(n>1?'s':'')+' need '+(3*n+1)+' matchsticks</text></svg>'};
